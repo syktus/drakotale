@@ -39,6 +39,13 @@ function moveDrako() {
     }
 }
 
+function stopDrako() {
+    drako.body.velocity.x = 0;
+    drako.body.velocity.y = 0;
+    drako.animations.stop();
+    drako.frame -= drako.frame % 2;
+}
+
 function createDrako(x, y) {
     drako = game.add.sprite(x, y, 'drako');
     game.physics.arcade.enable(drako);
@@ -71,4 +78,28 @@ function genericCleanup() {
         drako.destroy();
         drako = null;
     }
+}
+
+function loadTransitionPlugin() {
+    if(!transitionPlugin) {
+        transitionPlugin = game.plugins.add(Phaser.Plugin.StateTransition);
+
+        transitionPlugin.settings({
+            duration: 1000,
+
+            ease: Phaser.Easing.Exponential.InOut,
+
+            properties: { alpha: 0 }
+        });
+    }
+}
+
+function setLoadBlock() {
+    loadBlock = true;
+    game.time.events.add(Phaser.Timer.SECOND * 0.7, unlockBlock);
+
+}
+
+function unlockBlock() {
+    loadBlock = false;
 }

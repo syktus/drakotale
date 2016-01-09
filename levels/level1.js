@@ -1,26 +1,20 @@
 var level1 = {
     preload: function() {
         game.load.image('bg_level1', 'assets/level1.png');
+        game.load.image('bg_level2', 'assets/level2.png');
+
+        game.load.image('pin1', 'assets/pin1.png');
+        game.load.image('ramka', 'assets/ramka.png');
 
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
 
-        doorActivated = false;
-
-        if(!transitionPlugin) {
-            transitionPlugin = game.plugins.add(Phaser.Plugin.StateTransition);
-
-            transitionPlugin.settings({
-                duration: 1000,
-
-                ease: Phaser.Easing.Exponential.InOut,
-
-                properties: { alpha: 0 }
-            });
-        }
+        loadTransitionPlugin();
     },
 
     create: function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        doorActivated = false;
 
         if(!cursors)
             cursors = game.input.keyboard.createCursorKeys();
@@ -58,10 +52,17 @@ var level1 = {
 
         makeRectangle(244, 0, 96, 5, door1);
 
-        createDrako(280, 220);
+        if(nextDrakoX && nextDrakoY)
+            createDrako(nextDrakoX, nextDrakoY);
+        else
+            createDrako(280, 220);
+
+        setLoadBlock();
     },
 
     update: function() {
+        if(loadBlock) return;
+
         game.physics.arcade.collide(drako, col);
         game.physics.arcade.collide(drako, door1, this.door1Callback);
 
@@ -75,6 +76,8 @@ var level1 = {
     door1Callback: function() {
         if(!doorActivated) {
             doorActivated = true;
+            nextDrakoX = 302;
+            nextDrakoY = 400;
             transitionPlugin.to('level2');
         }
     }
