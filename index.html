@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>hello phaser!</title>
-        <script src="phaser.min.js"></script>
+        <script src="phaser.js"></script>
     </head>
     <body>
 
@@ -11,19 +11,92 @@
 
     window.onload = function() {
 
-        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+        var drako, col, cursors;
+
+        var game = new Phaser.Game(640, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
         function preload () {
+            game.load.image('bg_level1', 'assets/level1.png');
 
-            game.load.image('logo', 'phaser.png');
-
+            game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
         }
 
         function create () {
+            game.physics.startSystem(Phaser.Physics.ARCADE);
 
-            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-            logo.anchor.setTo(0.5, 0.5);
+            cursors = game.input.keyboard.createCursorKeys();
 
+            col = game.add.sprite(0, 0, 'bg_level1');
+
+            col = game.add.group();
+
+            game.physics.arcade.enable(col);
+            col.enableBody = true;
+
+            col.physicsBodyType = Phaser.Physics.ARCADE;
+
+//            col.add(obj2);
+
+//            col.body.immovable = true;
+
+            makeRectangle(0, 0, 100, 100, col);
+
+            drako = game.add.sprite(280, 220, 'drako');
+
+            game.physics.arcade.enable(drako);
+            drako.body.collideWorldBounds = true;
+
+            drako.animations.add('down', [0, 1], 10, true);
+            drako.animations.add('up', [2, 3], 10, true);
+            drako.animations.add('right', [4, 5], 10, true);
+            drako.animations.add('left', [6, 7], 10, true);
+
+        }
+
+        function update () {
+            var MOVE_SPEED = 170;
+
+            game.physics.arcade.collide(drako, col);
+
+            drako.body.velocity.x = 0;
+            drako.body.velocity.y = 0;
+
+            if (cursors.left.isDown)
+            {
+                drako.body.velocity.x = -MOVE_SPEED;
+                drako.animations.play('left');
+            }
+            else if (cursors.right.isDown)
+            {
+                drako.body.velocity.x = MOVE_SPEED;
+                drako.animations.play('right');
+            }
+            else if (cursors.down.isDown)
+            {
+                drako.body.velocity.y = MOVE_SPEED;
+                drako.animations.play('down');
+            }
+            else if (cursors.up.isDown)
+            {
+                drako.body.velocity.y = -MOVE_SPEED;
+                drako.animations.play('up');
+            }
+            else
+            {
+                drako.animations.stop();
+                drako.frame = 4;
+            }
+        }
+
+        function makeRectangle(x, y, a, b, group) {
+            var obj = game.add.bitmapData(a, b);
+
+            obj.ctx.rect(x, y, a, b);
+            obj.ctx.fillStyle = "#0f0";
+            obj.ctx.fill();
+
+            obj_sprite = game.add.sprite(0, 0, obj, 0, group);
+            obj_sprite.body.immovable = true;
         }
 
     };
