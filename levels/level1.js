@@ -7,6 +7,9 @@ var level1 = {
         game.load.image('bg_level1', 'assets/level1.png');
         game.load.image('bg_level2', 'assets/level2.png');
         game.load.image('bg_level3', 'assets/level3.png');
+        game.load.image('bg_level4', 'assets/level4.png');
+
+        /* LEVEL 2 */
 
         game.load.image('pin1', 'assets/pin1.png');
         game.load.image('pin2', 'assets/pin2.png');
@@ -14,16 +17,25 @@ var level1 = {
         game.load.image('pin4', 'assets/pin4.png');
         game.load.image('mlody_suszy', 'assets/mlody_suszy.png');
 
+        game.load.audio('nip', 'assets/talk_pin.ogg');
+        game.load.audio('nip_slow', 'assets/talk_pin2.ogg');
+        game.load.audio('mlody', 'assets/talk_mlo.ogg');
+
+        /* LEVEL 3 */
+
         game.load.image('parrot', 'assets/item1.png');
+
+        /* LEVEL 4 */
+
+        game.load.spritesheet('mlody', 'assets/mlody_sprite.png', 46, 65);
+        game.load.spritesheet('mlody_head', 'assets/mlody_sprite_head.png', 46, 35);
+
+        /* COMMON */
 
         game.load.image('ramka', 'assets/ramka.png');
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
 
         game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
-
-        game.load.audio('nip', 'assets/talk_pin.ogg');
-        game.load.audio('nip_slow', 'assets/talk_pin2.ogg');
-        game.load.audio('mlody', 'assets/talk_mlo.ogg');
 
         loadTransitionPlugin();
     },
@@ -63,19 +75,9 @@ var level1 = {
 
         col.visible = false;
 
-        door1 = game.add.group();
-        door1.enableBody = true;
-        door1.physicsBodyType = Phaser.Physics.ARCADE;
-        door1.visible = false;
+        door1 = createTrigger(244, 0, 96, 5);
 
-        makeRectangle(244, 0, 96, 5, door1);
-
-        painting_trigger = game.add.group();
-        painting_trigger.enableBody = true;
-        painting_trigger.physicsBodyType = Phaser.Physics.ARCADE;
-        painting_trigger.visible = false;
-
-        makeRectangle(20, 120, 100, 50, painting_trigger);
+        painting_trigger = createTrigger(20, 120, 100, 50);
 
         if(nextDrakoX && nextDrakoY)
             createDrako(nextDrakoX, nextDrakoY);

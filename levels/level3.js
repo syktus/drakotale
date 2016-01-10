@@ -29,19 +29,8 @@ var level3 = {
 
         bg = game.add.sprite(0, 0, 'bg_level3');
 
-        door1 = game.add.group();
-        door1.enableBody = true;
-        door1.physicsBodyType = Phaser.Physics.ARCADE;
-        door1.visible = false;
-
-        makeRectangle(0, 475, 640, 5, door1);
-
-        door2 = game.add.group();
-        door2.enableBody = true;
-        door2.physicsBodyType = Phaser.Physics.ARCADE;
-        door2.visible = false;
-
-        makeRectangle(280, 160, 80, 5, door2);
+        door1 = createTrigger(0, 475, 640, 5);
+        door2 = createTrigger(280, 160, 80, 5);
 
         col = game.add.group();
 
@@ -59,12 +48,7 @@ var level3 = {
 
         parrot = game.add.sprite(390, 143, 'parrot');
 
-        parrot_trigger = game.add.group();
-        parrot_trigger.enableBody = true;
-        parrot_trigger.physicsBodyType = Phaser.Physics.ARCADE;
-        parrot_trigger.visible = false;
-
-        makeRectangle(390, 140, 60, 80, parrot_trigger);
+        parrot_trigger = createTrigger(390, 140, 60, 80);
 
         if (nextDrakoX && nextDrakoY)
             createDrako(nextDrakoX, nextDrakoY);
@@ -86,7 +70,7 @@ var level3 = {
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(302, 20, 'level2'));
-            game.physics.arcade.collide(drako, door2/*, doorGenerator(302, 20, 'level2')*/);
+            game.physics.arcade.collide(drako, door2, doorGenerator(302, 400, 'level4'));
 
             if (spaceDown() && game.physics.arcade.overlap(drako, parrot_trigger))
                 level3.parrotDialogInit();
