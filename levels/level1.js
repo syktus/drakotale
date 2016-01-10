@@ -6,6 +6,7 @@ var level1 = {
     preload: function() {
         game.load.image('bg_level1', 'assets/level1.png');
         game.load.image('bg_level2', 'assets/level2.png');
+        game.load.image('bg_level3', 'assets/level3.png');
 
         game.load.image('pin1', 'assets/pin1.png');
         game.load.image('pin2', 'assets/pin2.png');
@@ -22,6 +23,7 @@ var level1 = {
 
         game.load.audio('nip', 'assets/talk_pin.ogg');
         game.load.audio('nip_slow', 'assets/talk_pin2.ogg');
+        game.load.audio('mlody', 'assets/talk_mlo.ogg');
 
         loadTransitionPlugin();
     },

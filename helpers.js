@@ -83,6 +83,11 @@ function genericCleanup() {
         door1 = null;
     }
 
+    if(door2) {
+        door2.destroy();
+        door2 = null;
+    }
+
     if(drako)
     {
         drako.destroy();

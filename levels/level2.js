@@ -8,12 +8,12 @@ var level2_text_content1 = '* Siemaneczko słon-NIP! -neczko!\n* Jestem Pinguey.
 var level2_text_content2 = '* Kurczę, troszkę zagubiona się wydajesz!\n   Nowa tutaj, co? NIP! Ale nie martw się!';
 var level2_text_content3 = '* Pom-NIP-mogę Ci!\n* Pingwiny to bardzo przyjazne stworzenia!';
 var level2_text_content4 = '* Które bardzo lubią dzieci.\n* Najlepiej nadziewane,\n* na zimno NIP! Jak zemsta...';
-var level2_text_content5 = '*  ...?\n   NIIIIIIP! czujesz ciepły powiew?\n   NIE! TYLKO NNIP -IE CIEPŁO!';
+var level2_text_content5 = '* ...?\n   NIIIIIIP! czujesz ciepły powiew?\n   NIE! TYLKO NNIP -IE CIEPŁO!';
 var level2_text_content6 = '* Moje arktyczne serce nie wytrzyma tego!\n   NIP! Teraz ci się udało,\n   ale nigdy stąd nie wyjdziesz!';
 var level2_text_content7 = '* A wiesz dlaczego?\n* BO NIGDY NIE USZCZĘŚLIWISZ WSZYSTKICH!';
 var level2_text_content8 = '* NIPNIPNIPNIPNIP!';
 var level2_text_content9 = '* ...?\n* ...cześć...';
-var level2_text_content10 = '* Spodziewałem się mrożonych brokułów.\n   Ale nie mrożonej babki w okularach.\n   Cho no ze mną';
+var level2_text_content10 = '* Spodziewałem się mrożonych brokułów.\n   Ale nie mrożonej babki w okularach.\n   Cho no ze mną.';
 
 
 var level2 = {
@@ -58,6 +58,13 @@ var level2 = {
 
         makeRectangle(0, 475, 640, 5, door1);
 
+        door2 = game.add.group();
+        door2.enableBody = true;
+        door2.physicsBodyType = Phaser.Physics.ARCADE;
+        door2.visible = false;
+
+        makeRectangle(0, 0, 640, 5, door2);
+
         if (!globalPenguinCutsceneTriggered) {
             pin_dialog_trigger = game.add.group();
             pin_dialog_trigger.enableBody = true;
@@ -91,8 +98,9 @@ var level2 = {
             level2.playCutscene();
         }
         else {
-            game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(275, 20, 'level1'));
+            game.physics.arcade.collide(drako, door2, doorGenerator(302, 400, 'level3'));
+
             if(pin_dialog_trigger)
                 game.physics.arcade.collide(drako, pin_dialog_trigger, level2.pinDialogInit);
 
@@ -165,7 +173,7 @@ var level2 = {
             textWaiter(12, 13, text)();
         else if (dialogState == 12) {
             if (pin.key != 'pin3') pin.loadTexture('pin3');
-            renderText(text, level2_text_content7, pin_talk);
+            renderText(text, level2_text_content7, pin_talk2, 160);
         }
         else if (dialogState == 13)
             textWaiter(14, 16, text)();
