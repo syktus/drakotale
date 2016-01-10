@@ -125,8 +125,9 @@ function displayText(t, callback) {
     t.setText('');
 }
 
-function renderText(t, string, textSpeed) {
+function renderText(t, string, sound, textSpeed) {
     if (typeof(textSpeed) === 'undefined') textSpeed = 40;
+    if (sound && !sound.isPlaying) sound.play();
     if (game.time.now > nextLetterTime) {
         if (nextLetterIndex < string.length) {
             if(string[nextLetterIndex] == ' ') {
@@ -142,6 +143,7 @@ function renderText(t, string, textSpeed) {
                 nextLetterTime = game.time.now + textSpeed;
         }
         else {
+            if (sound && sound.isPlaying) sound.onLoop.add(function() { sound.stop() });
             if (textFinishedCallback) textFinishedCallback();
         }
     }

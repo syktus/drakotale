@@ -1,5 +1,6 @@
 var pin_dialog_trigger;
 var pin, mlody;
+var pin_talk, pin_talk2, mlody_talk;
 
 var penguinEscaping = false, mlodyEntering = false, mlodyLeaving = false;
 
@@ -32,6 +33,10 @@ var level2 = {
 
         game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
 
+        game.load.audio('pin', 'assets/talk_pin.ogg');
+        game.load.audio('pin_slow', 'assets/talk_pin2.ogg');
+        game.load.audio('mlody', 'assets/talk_mlo.ogg');
+
         loadTransitionPlugin();
     },
 
@@ -62,8 +67,12 @@ var level2 = {
             makeRectangle(0, 325, 640, 5, pin_dialog_trigger);
 
             pin = game.add.sprite(265, 168, 'pin1');
+
+            pin_talk = game.add.audio('pin', 1, true);
+            pin_talk2 = game.add.audio('pin_slow', 1, true);
+            mlody_talk = game.add.audio('mlody', 1, true);
         }
-        
+
         if(nextDrakoX && nextDrakoY)
             createDrako(nextDrakoX, nextDrakoY);
         else
@@ -105,6 +114,16 @@ var level2 = {
             mlody.destroy();
             mlody = null;
         }
+
+        if(pin_talk) {
+            pin_talk.destroy();
+            pin_talk = null;
+        }
+
+        if(pin_talk2) {
+            pin_talk2.destroy();
+            pin_talk2 = null;
+        }
     },
 
     pinDialogInit: function() {
@@ -117,36 +136,36 @@ var level2 = {
 
     playCutscene: function() {
         if (dialogState == 0)
-            renderText(text, level2_text_content1);
+            renderText(text, level2_text_content1, pin_talk);
         else if (dialogState == 1)
             textWaiter(2, 3, text)();
         else if (dialogState == 2)
-            renderText(text, level2_text_content2);
+            renderText(text, level2_text_content2, pin_talk);
         else if (dialogState == 3)
             textWaiter(4, 5, text)();
         else if (dialogState == 4)
-            renderText(text, level2_text_content3);
+            renderText(text, level2_text_content3, pin_talk);
         else if (dialogState == 5)
             textWaiter(6, 7, text)();
         else if (dialogState == 6) {
             if (pin.key != 'pin2') pin.loadTexture('pin2');
-            renderText(text, level2_text_content4, 160);
+            renderText(text, level2_text_content4, pin_talk2, 160);
         }
         else if (dialogState == 7)
             textWaiter(8, 9, text)();
         else if (dialogState == 8) {
             if (pin.key != 'pin4') pin.loadTexture('pin4');
-            renderText(text, level2_text_content5);
+            renderText(text, level2_text_content5, pin_talk);
         }
         else if (dialogState == 9)
             textWaiter(10, 11, text)();
         else if (dialogState == 10)
-            renderText(text, level2_text_content6);
+            renderText(text, level2_text_content6, pin_talk);
         else if (dialogState == 11)
             textWaiter(12, 13, text)();
         else if (dialogState == 12) {
             if (pin.key != 'pin3') pin.loadTexture('pin3');
-            renderText(text, level2_text_content7);
+            renderText(text, level2_text_content7, pin_talk);
         }
         else if (dialogState == 13)
             textWaiter(14, 16, text)();
@@ -155,7 +174,7 @@ var level2 = {
             dialogState = 15;
         }
         else if (dialogState == 15)
-            renderText(text, level2_text_content8);
+            renderText(text, level2_text_content8, pin_talk);
         else if (dialogState == 16)
             textWaiter(17, 18, text)();
         else if (dialogState == 17) {
@@ -169,11 +188,11 @@ var level2 = {
             dialogState = 20;
         }
         else if (dialogState == 20)
-            renderText(text, level2_text_content9);
+            renderText(text, level2_text_content9, mlody_talk);
         else if (dialogState == 21)
             textWaiter(22, 23, text)();
         else if (dialogState == 22)
-            renderText(text, level2_text_content10);
+            renderText(text, level2_text_content10, mlody_talk);
         else if (dialogState == 23) {
             level2.startMlodyLeaving();
             dialogState = 24;

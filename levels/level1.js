@@ -20,6 +20,9 @@ var level1 = {
 
         game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
 
+        game.load.audio('nip', 'assets/talk_pin.ogg');
+        game.load.audio('nip_slow', 'assets/talk_pin2.ogg');
+
         loadTransitionPlugin();
     },
 
