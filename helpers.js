@@ -170,6 +170,17 @@ function textWaiter(transitionState, nextState, t) {
     }
 }
 
+function textFinishWaiter() {
+    if (spaceDown()) {
+        lockSpace();
+        border.destroy();
+        border = null;
+        text.destroy();
+        text = null;
+        dialogState = -1;
+    }
+}
+
 function doorGenerator(x, y, level) {
     return function() {
         if(!doorActivated) {

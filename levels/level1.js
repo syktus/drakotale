@@ -114,14 +114,7 @@ var level1 = {
         if (dialogState == 0)
             renderText(text, level1_text_content1);
         else if (dialogState == 1) {
-            if (spaceDown()) {
-                lockSpace();
-                border.destroy();
-                border = null;
-                text.destroy();
-                text = null;
-                dialogState = -1;
-            }
+            textFinishWaiter();
         }
     }
 };
