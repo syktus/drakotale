@@ -18,6 +18,7 @@ var level1 = {
 
         if(!cursors)
             cursors = game.input.keyboard.createCursorKeys();
+        game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
 
         bg = game.add.sprite(0, 0, 'bg_level1');
 
@@ -64,22 +65,13 @@ var level1 = {
         if(loadBlock) return;
 
         game.physics.arcade.collide(drako, col);
-        game.physics.arcade.collide(drako, door1, this.door1Callback);
+        game.physics.arcade.collide(drako, door1, doorGenerator(302, 400, 'level1'));
 
         moveDrako();
     },
 
     shutdown: function() {
         genericCleanup();
-    },
-
-    door1Callback: function() {
-        if(!doorActivated) {
-            doorActivated = true;
-            nextDrakoX = 302;
-            nextDrakoY = 400;
-            transitionPlugin.to('level2');
-        }
     }
 };
 

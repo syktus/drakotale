@@ -96,13 +96,17 @@ function loadTransitionPlugin() {
 
 var nextLetterTime = 0;
 var nextLetterIndex = 0;
+var textFinishedCallback = null;
 
-function displayText() {
+function displayText(t, callback) {
     nextLetterIndex = 0;
     nextLetterTime = 0;
+    textFinishedCallback = callback;
+    t.setText('');
 }
 
-function renderText(t, string) {
+function renderText(t, string, textSpeed) {
+    if (typeof(textSpeed) === 'undefined') textSpeed = 40;
     if (game.time.now > nextLetterTime) {
         if (nextLetterIndex < string.length) {
             if(string[nextLetterIndex] == ' ') {
@@ -115,7 +119,36 @@ function renderText(t, string) {
             if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
                 nextLetterTime = game.time.now;
             else
-                nextLetterTime = game.time.now + 40;
+                nextLetterTime = game.time.now + textSpeed;
+        }
+        else {
+            if (textFinishedCallback) textFinishedCallback();
+        }
+    }
+}
+
+function spaceDown() {
+    return game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR);
+}
+
+function textWaiter(transitionState, nextState, t) {
+    return function() {
+        if (spaceDown()) {
+            dialogState = transitionState;
+            displayText(t, function () {
+                dialogState = nextState;
+            });
+        }
+    }
+}
+
+function doorGenerator(x, y, level) {
+    return function() {
+        if(!doorActivated) {
+            doorActivated = true;
+            nextDrakoX = x;
+            nextDrakoY = y;
+            transitionPlugin.to(level);
         }
     }
 }

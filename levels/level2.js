@@ -1,7 +1,13 @@
 var pin_dialog, pinDialogOn = false;
 var pin, border, text;
 
-var text_content = 'Lorem ipsum dolor sit amet, enim percipit\net vim, ei mea tritani platonem.\nMel sale invenire id, per ad meis platonem.';
+var text_content1 = '* Siemaneczko słon-NIP! -neczko!\n* Jestem Pinguey.\n* Pinguey Pingwin!';
+var text_content2 = '* Kurczę, troszkę zagubiona się wydajesz!\n   Nowa tutaj, co? NIP! Ale nie martw się!';
+var text_content3 = 'Pom-NIP-mogę ci!  Pingwiny to bardzo przyjazne stworzenia! (pingwin przybiera bardziej kripi forme)' +
+    'Które bardzo lubią dzieci. Najlepiej nadziewane, na zimno NIP! Jak zemsta... ...?' +
+    'NIIIIIIP! czujesz ciepły powiew NIE! TYLKO NNIP -IE CIEPŁO! Moje arktyczne serce nie wytrzyma tego!' +
+    'NIP! Teraz ci się udało, ale nigdy stąd nie wyjdziesz! A wiesz dlaczego?' +
+    'BO NIGDY NIE USZCZĘŚLIWISZ WSZYSTKICH! NIPNIPNIPNIPNIP! Pingwin uciekł.';
 
 var level2 = {
     preload: function() {
@@ -24,6 +30,7 @@ var level2 = {
 
         if(!cursors)
             cursors = game.input.keyboard.createCursorKeys();
+        game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
 
         bg = game.add.sprite(0, 0, 'bg_level2');
 
@@ -60,7 +67,7 @@ var level2 = {
         }
         else {
             game.physics.arcade.collide(drako, col);
-            game.physics.arcade.collide(drako, door1, this.door1Callback);
+            game.physics.arcade.collide(drako, door1, doorGenerator(275, 20, 'level1'));
             game.physics.arcade.collide(drako, pin_dialog, this.pinDialogCallback);
 
             moveDrako();
@@ -87,24 +94,25 @@ var level2 = {
 
     },
 
-    door1Callback: function() {
-        if(!doorActivated) {
-            doorActivated = true;
-            nextDrakoX = 275;
-            nextDrakoY = 20;
-            transitionPlugin.to('level1');
-        }
-    },
-
     pinDialogCallback: function() {
         pinDialogOn = true;
         border = game.add.sprite(31, 10, 'ramka');
         text = game.add.bitmapText(62, 40, 'determination_font', '', 29);
-        displayText();
+        displayText(text, function() { dialogState = 1 });
     },
 
     playCutscene: function() {
-        renderText(text, text_content);
+        if (dialogState == 0)
+            renderText(text, text_content1);
+        else if (dialogState == 1)
+            textWaiter(2, 3, text)();
+        else if (dialogState == 2)
+            renderText(text, text_content2);
+        else if (dialogState == 3)
+            textWaiter(4, 5, text)();
+        else if (dialogState == 4)
+            renderText(text, text_content3);
+
     }
 };
 

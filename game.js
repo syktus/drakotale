@@ -1,4 +1,6 @@
 var bg, drako, col, cursors, col_sprites, door1, doorActivated, loadBlock = false;
+
+var dialogState = 0;
 var nextDrakoX = null, nextDrakoY = null;
 
 var transitionPlugin;
