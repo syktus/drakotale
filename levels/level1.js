@@ -12,11 +12,11 @@ var level1 = {
         game.load.image('pin2', 'assets/pin2.png');
         game.load.image('pin3', 'assets/pin3.png');
         game.load.image('pin4', 'assets/pin4.png');
-
         game.load.image('mlody_suszy', 'assets/mlody_suszy.png');
 
-        game.load.image('ramka', 'assets/ramka.png');
+        game.load.image('parrot', 'assets/item1.png');
 
+        game.load.image('ramka', 'assets/ramka.png');
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
 
         game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
@@ -119,6 +119,7 @@ var level1 = {
         border = game.add.sprite(31, 318, 'ramka');
         text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
         displayText(text, function() { dialogState = 1 });
+        lockSpace(0.3);
     },
 
     paintingCutscene: function() {

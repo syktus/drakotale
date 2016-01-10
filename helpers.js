@@ -140,7 +140,11 @@ function renderText(t, string, sound, textSpeed) {
                 nextLetterIndex++;
             }
 
-            t.setText(t.text + string[nextLetterIndex]);
+            if(string[nextLetterIndex] == 'ą')
+                t.setText(t.text + 'ą ');
+            else
+                t.setText(t.text + string[nextLetterIndex]);
+
             nextLetterIndex++;
             if (spaceDown())
                 nextLetterTime = game.time.now;

@@ -28,7 +28,6 @@ var level2 = {
         game.load.image('mlody_suszy', 'assets/mlody_suszy.png');
 
         game.load.image('ramka', 'assets/ramka.png');
-
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
 
         game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
