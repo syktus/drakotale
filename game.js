@@ -1,5 +1,7 @@
 var bg, drako, col, cursors, col_sprites, door1, doorActivated, loadBlock = false;
 
+var border, text;
+
 var dialogState = 0;
 var nextDrakoX = null, nextDrakoY = null;
 

@@ -73,10 +73,30 @@ function genericCleanup() {
         col_sprites = null;
     }
 
+    if(col) {
+        col.destroy();
+        col = null;
+    }
+
+    if(door1) {
+        door1.destroy();
+        door1 = null;
+    }
+
     if(drako)
     {
         drako.destroy();
         drako = null;
+    }
+
+    if(border) {
+        border.destroy();
+        border = null;
+    }
+
+    if(text) {
+        text.destroy();
+        text = null;
     }
 }
 
@@ -116,7 +136,7 @@ function renderText(t, string, textSpeed) {
 
             t.setText(t.text + string[nextLetterIndex]);
             nextLetterIndex++;
-            if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+            if (spaceDown())
                 nextLetterTime = game.time.now;
             else
                 nextLetterTime = game.time.now + textSpeed;
@@ -127,8 +147,16 @@ function renderText(t, string, textSpeed) {
     }
 }
 
+var spaceIsLocked = false;
+
+function lockSpace(time) {
+    if (typeof(time) === 'undefined') time = 0.5;
+    spaceIsLocked = true;
+    game.time.events.add(Phaser.Timer.SECOND * time, function() { spaceIsLocked = false; });
+}
+
 function spaceDown() {
-    return game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR);
+    return !spaceIsLocked && game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR);
 }
 
 function textWaiter(transitionState, nextState, t) {

@@ -1,3 +1,7 @@
+var painting_trigger;
+
+var level1_text_content1 = 'NAPIS POD OBRAZEM:\n\nLooo0o0o000v11000ve';
+
 var level1 = {
     preload: function() {
         game.load.image('bg_level1', 'assets/level1.png');
@@ -7,6 +11,8 @@ var level1 = {
         game.load.image('ramka', 'assets/ramka.png');
 
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
+
+        game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
 
         loadTransitionPlugin();
     },
@@ -53,10 +59,19 @@ var level1 = {
 
         makeRectangle(244, 0, 96, 5, door1);
 
+        painting_trigger = game.add.group();
+        painting_trigger.enableBody = true;
+        painting_trigger.physicsBodyType = Phaser.Physics.ARCADE;
+        painting_trigger.visible = false;
+
+        makeRectangle(20, 120, 100, 50, painting_trigger);
+
         if(nextDrakoX && nextDrakoY)
             createDrako(nextDrakoX, nextDrakoY);
         else
             createDrako(280, 220);
+
+        dialogState = -1;
 
         setLoadBlock();
     },
@@ -64,14 +79,50 @@ var level1 = {
     update: function() {
         if(loadBlock) return;
 
-        game.physics.arcade.collide(drako, col);
-        game.physics.arcade.collide(drako, door1, doorGenerator(302, 400, 'level1'));
+        if(dialogState >= 0 && dialogState <= 1) {
+            stopDrako();
+            level1.paintingCutscene();
+        }
+        else {
+            game.physics.arcade.collide(drako, col);
+            game.physics.arcade.collide(drako, door1, doorGenerator(302, 400, 'level2'));
 
-        moveDrako();
+            if (spaceDown() && game.physics.arcade.overlap(drako, painting_trigger))
+                level1.paintingDialogInit();
+
+            moveDrako();
+        }
     },
 
     shutdown: function() {
         genericCleanup();
+
+        if (painting_trigger) {
+            painting_trigger.destroy();
+            painting_trigger = null;
+        }
+    },
+
+    paintingDialogInit: function() {
+        dialogState = 0;
+        border = game.add.sprite(31, 318, 'ramka');
+        text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
+        displayText(text, function() { dialogState = 1 });
+    },
+
+    paintingCutscene: function() {
+        if (dialogState == 0)
+            renderText(text, level1_text_content1);
+        else if (dialogState == 1) {
+            if (spaceDown()) {
+                lockSpace();
+                border.destroy();
+                border = null;
+                text.destroy();
+                text = null;
+                dialogState = -1;
+            }
+        }
     }
 };
 

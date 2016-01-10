@@ -1,13 +1,17 @@
-var pin_dialog, pinDialogOn = false;
-var pin, border, text;
+var pin_dialog_trigger;
+var pin;
 
-var text_content1 = '* Siemaneczko słon-NIP! -neczko!\n* Jestem Pinguey.\n* Pinguey Pingwin!';
-var text_content2 = '* Kurczę, troszkę zagubiona się wydajesz!\n   Nowa tutaj, co? NIP! Ale nie martw się!';
-var text_content3 = 'Pom-NIP-mogę ci!  Pingwiny to bardzo przyjazne stworzenia! (pingwin przybiera bardziej kripi forme)' +
-    'Które bardzo lubią dzieci. Najlepiej nadziewane, na zimno NIP! Jak zemsta... ...?' +
-    'NIIIIIIP! czujesz ciepły powiew NIE! TYLKO NNIP -IE CIEPŁO! Moje arktyczne serce nie wytrzyma tego!' +
-    'NIP! Teraz ci się udało, ale nigdy stąd nie wyjdziesz! A wiesz dlaczego?' +
-    'BO NIGDY NIE USZCZĘŚLIWISZ WSZYSTKICH! NIPNIPNIPNIPNIP! Pingwin uciekł.';
+var level2_text_content1 = '* Siemaneczko słon-NIP! -neczko!\n* Jestem Pinguey.\n* Pinguey Pingwin!';
+var level2_text_content2 = '* Kurczę, troszkę zagubiona się wydajesz!\n   Nowa tutaj, co? NIP! Ale nie martw się!';
+var level2_text_content3 = '* Pom-NIP-mogę Ci!\n* Pingwiny to bardzo przyjazne stworzenia!';
+var level2_text_content4 = '* Które bardzo lubią dzieci.\n* Najlepiej nadziewane,\n* na zimno NIP! Jak zemsta...';
+var level2_text_content5 = '*  ...?\n   NIIIIIIP! czujesz ciepły powiew?\n   NIE! TYLKO NNIP -IE CIEPŁO!';
+var level2_text_content6 = '   Moje arktyczne serce nie wytrzyma tego!\n   NIP! Teraz ci się udało,\n   ale nigdy stąd nie wyjdziesz!';
+var level2_text_content7 = '   A wiesz dlaczego?\n   BO NIGDY NIE USZCZĘŚLIWISZ WSZYSTKICH!';
+var level2_text_content8 = '   NIPNIPNIPNIPNIP!';
+var level2_text_content9 = '* ...?\n* ...cześć...';
+var level2_text_content10 = '* spodziewałem się mrożonych brokułów\n   Ale nie mrożonej babki w okularach.\n   Cho no ze mną';
+
 
 var level2 = {
     preload: function() {
@@ -41,12 +45,12 @@ var level2 = {
 
         makeRectangle(0, 475, 640, 5, door1);
 
-        pin_dialog = game.add.group();
-        pin_dialog.enableBody = true;
-        pin_dialog.physicsBodyType = Phaser.Physics.ARCADE;
-        pin_dialog.visible = false;
+        pin_dialog_trigger = game.add.group();
+        pin_dialog_trigger.enableBody = true;
+        pin_dialog_trigger.physicsBodyType = Phaser.Physics.ARCADE;
+        pin_dialog_trigger.visible = false;
 
-        makeRectangle(0, 325, 640, 5, pin_dialog);
+        makeRectangle(0, 325, 640, 5, pin_dialog_trigger);
 
         pin = game.add.sprite(265, 168, 'pin1');
 
@@ -55,20 +59,22 @@ var level2 = {
         else
             createDrako(302, 400);
 
+        dialogState = -1;
+
         setLoadBlock();
     },
 
     update: function() {
         if(loadBlock) return;
 
-        if(pinDialogOn) {
+        if(dialogState >= 0 && dialogState <= 22) {
             stopDrako();
-            this.playCutscene();
+            level2.playCutscene();
         }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(275, 20, 'level1'));
-            game.physics.arcade.collide(drako, pin_dialog, this.pinDialogCallback);
+            game.physics.arcade.collide(drako, pin_dialog_trigger, level2.pinDialogInit);
 
             moveDrako();
         }
@@ -81,21 +87,10 @@ var level2 = {
             pin.destroy();
             pin = null;
         }
-
-        if(border) {
-            border.destroy();
-            border = null;
-        }
-
-        if(text) {
-            text.destroy();
-            text = null;
-        }
-
     },
 
-    pinDialogCallback: function() {
-        pinDialogOn = true;
+    pinDialogInit: function() {
+        dialogState = 0;
         border = game.add.sprite(31, 10, 'ramka');
         text = game.add.bitmapText(62, 40, 'determination_font', '', 29);
         displayText(text, function() { dialogState = 1 });
@@ -103,16 +98,39 @@ var level2 = {
 
     playCutscene: function() {
         if (dialogState == 0)
-            renderText(text, text_content1);
+            renderText(text, level2_text_content1);
         else if (dialogState == 1)
             textWaiter(2, 3, text)();
         else if (dialogState == 2)
-            renderText(text, text_content2);
+            renderText(text, level2_text_content2);
         else if (dialogState == 3)
             textWaiter(4, 5, text)();
         else if (dialogState == 4)
-            renderText(text, text_content3);
-
+            renderText(text, level2_text_content3);
+        else if (dialogState == 5)
+            textWaiter(6, 7, text)();
+        else if (dialogState == 6)
+            renderText(text, level2_text_content4);
+        else if (dialogState == 7)
+            textWaiter(8, 9, text)();
+        else if (dialogState == 8)
+            renderText(text, level2_text_content5);
+        else if (dialogState == 9)
+            textWaiter(10, 11, text)();
+        else if (dialogState == 10)
+            renderText(text, level2_text_content6);
+        else if (dialogState == 11)
+            textWaiter(12, 13, text)();
+        else if (dialogState == 12)
+            renderText(text, level2_text_content7);
+        else if (dialogState == 13)
+            textWaiter(14, 15, text)();
+        else if (dialogState == 14)
+            renderText(text, level2_text_content8);
+        else if (dialogState == 15)
+            textWaiter(16, 17, text)();
+        else if (dialogState == 16)
+            renderText(text, level2_text_content9);
     }
 };
 
