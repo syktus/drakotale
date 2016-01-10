@@ -2,6 +2,12 @@ var bg, drako, col, cursors, col_sprites, door1, doorActivated, loadBlock = fals
 
 var border, text;
 
+/* GLOBAL STATE FLAGS */
+
+var globalPenguinCutsceneTriggered = false;
+
+/**********************/
+
 var dialogState = 0;
 var nextDrakoX = null, nextDrakoY = null;
 

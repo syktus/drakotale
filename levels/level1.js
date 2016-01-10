@@ -8,6 +8,12 @@ var level1 = {
         game.load.image('bg_level2', 'assets/level2.png');
 
         game.load.image('pin1', 'assets/pin1.png');
+        game.load.image('pin2', 'assets/pin2.png');
+        game.load.image('pin3', 'assets/pin3.png');
+        game.load.image('pin4', 'assets/pin4.png');
+
+        game.load.image('mlody_suszy', 'assets/mlody_suszy.png');
+
         game.load.image('ramka', 'assets/ramka.png');
 
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
@@ -113,9 +119,8 @@ var level1 = {
     paintingCutscene: function() {
         if (dialogState == 0)
             renderText(text, level1_text_content1);
-        else if (dialogState == 1) {
-            textFinishWaiter();
-        }
+        else if (dialogState == 1)
+            textFinishWaiter(text, border);
     }
 };
 

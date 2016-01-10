@@ -170,12 +170,12 @@ function textWaiter(transitionState, nextState, t) {
     }
 }
 
-function textFinishWaiter() {
+function textFinishWaiter(t, b) {
     if (spaceDown()) {
         lockSpace();
-        border.destroy();
+        t.destroy();
         border = null;
-        text.destroy();
+        b.destroy();
         text = null;
         dialogState = -1;
     }
