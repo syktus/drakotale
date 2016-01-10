@@ -1,5 +1,7 @@
 var pin_dialog, pinDialogOn = false;
-var pin, border;
+var pin, border, text;
+
+var text_content = 'Lorem ipsum dolor sit amet, enim percipit\net vim, ei mea tritani platonem.\nMel sale invenire id, per ad meis platonem.';
 
 var level2 = {
     preload: function() {
@@ -9,6 +11,8 @@ var level2 = {
         game.load.image('ramka', 'assets/ramka.png');
 
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
+
+        game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
 
         loadTransitionPlugin();
     },
@@ -52,6 +56,7 @@ var level2 = {
 
         if(pinDialogOn) {
             stopDrako();
+            this.playCutscene();
         }
         else {
             game.physics.arcade.collide(drako, col);
@@ -75,6 +80,11 @@ var level2 = {
             border = null;
         }
 
+        if(text) {
+            text.destroy();
+            text = null;
+        }
+
     },
 
     door1Callback: function() {
@@ -89,7 +99,12 @@ var level2 = {
     pinDialogCallback: function() {
         pinDialogOn = true;
         border = game.add.sprite(31, 10, 'ramka');
-    }
+        text = game.add.bitmapText(62, 40, 'determination_font', '', 29);
+        displayText();
+    },
 
+    playCutscene: function() {
+        renderText(text, text_content);
+    }
 };
 

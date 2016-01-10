@@ -94,10 +94,35 @@ function loadTransitionPlugin() {
     }
 }
 
+var nextLetterTime = 0;
+var nextLetterIndex = 0;
+
+function displayText() {
+    nextLetterIndex = 0;
+    nextLetterTime = 0;
+}
+
+function renderText(t, string) {
+    if (game.time.now > nextLetterTime) {
+        if (nextLetterIndex < string.length) {
+            if(string[nextLetterIndex] == ' ') {
+                t.setText(t.text + '  ');
+                nextLetterIndex++;
+            }
+
+            t.setText(t.text + string[nextLetterIndex]);
+            nextLetterIndex++;
+            if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+                nextLetterTime = game.time.now;
+            else
+                nextLetterTime = game.time.now + 40;
+        }
+    }
+}
+
 function setLoadBlock() {
     loadBlock = true;
     game.time.events.add(Phaser.Timer.SECOND * 0.7, unlockBlock);
-
 }
 
 function unlockBlock() {
