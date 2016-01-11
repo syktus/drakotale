@@ -38,6 +38,7 @@ var level4 = {
 
         game.load.audio('mlody', 'assets/talk_mlo.ogg');
 
+        game.load.image('heart', 'assets/heart.png');
         game.load.image('ramka', 'assets/ramka.png');
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
 
@@ -180,6 +181,22 @@ var level4 = {
             textWaiter(10, 11, text);
         else if (dialogState == 10)
             renderText(text, level4_text_content6, mlody_talk);
+        else if (dialogState == 11)
+            genericWaiter(12);
+        else if (dialogState == 12) {
+            text.setText('');
+            level4.setupChoice();
+            dialogState = 13;
+        }
+        else if (dialogState == 13)
+            choiceWaiter(14,15);
+    },
+
+    setupChoice: function() {
+        choice1 = game.add.bitmapText(204, 348, 'determination_font', 'lorem ipsum', 29);
+        choice2 = game.add.bitmapText(400, 348, 'determination_font', 'lorem ipsum dolor', 29);
+        choiceState = 0;
+        heart = game.add.sprite(174, 356, 'heart');
     }
 };
 

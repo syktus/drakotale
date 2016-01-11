@@ -126,6 +126,7 @@ function spaceDown() {
 
 function textWaiter(transitionState, nextState, t) {
     if (spaceDown()) {
+        lockSpace(0.3);
         dialogState = transitionState;
         displayText(t, function () {
             dialogState = nextState;
@@ -133,14 +134,45 @@ function textWaiter(transitionState, nextState, t) {
     }
 }
 
-function textFinishWaiter(t, b) {
+function textFinishWaiter() {
     if (spaceDown()) {
         lockSpace();
-        t.destroy();
-        border = null;
-        b.destroy();
+        text.destroy();
         text = null;
+        border.destroy();
+        border = null;
+        if (avatar)  {
+            avatar.destroy()
+            avatar = null;
+        }
         dialogState = -1;
+    }
+}
+
+function genericWaiter(transitionState) {
+    if (spaceDown()) {
+        lockSpace(0.3);
+        dialogState = transitionState;
+    }
+}
+
+var choiceState;
+function choiceWaiter(firstChoiceState, secondChoiceState) {
+    if (spaceDown()) {
+        if (choiceState == 1)
+            dialogState = firstChoiceState;
+        else
+            dialogState = secondChoiceState;
+
+        lockSpace(0.3);
+    }
+    else if (choiceState == 0 && cursors.right.isDown) {
+        choiceState = 1;
+        heart.x += 196;
+    }
+    else if (choiceState == 1 && cursors.left.isDown) {
+        choiceState = 0;
+        heart.x -= 196;
     }
 }
 

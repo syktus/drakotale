@@ -1,6 +1,6 @@
 var bg, drako, col, cursors, col_sprites, door1, door2, doorActivated, loadBlock = false;
 
-var border, text, avatar, choice1, choice2;
+var border, text, avatar, choice1, choice2, heart;
 
 /* GLOBAL STATE FLAGS */
 

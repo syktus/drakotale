@@ -105,6 +105,6 @@ var level3 = {
         if (dialogState == 0)
             renderText(text, level3_text_content1);
         else if (dialogState == 1)
-            textFinishWaiter(text, border);
+            textFinishWaiter();
     }
 };

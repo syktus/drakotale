@@ -32,6 +32,7 @@ var level1 = {
 
         /* COMMON */
 
+        game.load.image('heart', 'assets/heart.png');
         game.load.image('ramka', 'assets/ramka.png');
         game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
 
@@ -128,7 +129,7 @@ var level1 = {
         if (dialogState == 0)
             renderText(text, level1_text_content1);
         else if (dialogState == 1)
-            textFinishWaiter(text, border);
+            textFinishWaiter();
     }
 };
 

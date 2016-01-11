@@ -194,7 +194,7 @@ var level2 = {
             dialogState = 25;
         }
         else if (dialogState == 25)
-            textFinishWaiter(text, border);
+            textFinishWaiter();
     },
 
     startPenguinEscape: function() {

@@ -57,4 +57,9 @@ function genericCleanup() {
         choice1.destroy();
         choice1 = null;
     }
+
+    if (heart) {
+        heart.destroy();
+        heart = null;
+    }
 }
