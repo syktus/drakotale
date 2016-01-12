@@ -6,6 +6,7 @@ var border, text, avatar, choice1, choice2, heart;
 
 var globalPenguinCutsceneTriggered = true;//false;
 var globalMlodyDialog1Completed = true;//false;
+var globalComputerDialogCompleted = false;
 
 /**********************/
 

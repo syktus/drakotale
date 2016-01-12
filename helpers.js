@@ -123,7 +123,10 @@ function setupChoice(y) {
     choiceState = 0;
 
     if (!heart) heart = game.add.sprite(174, y+8, 'heart');
-    else heart.y = y+8;
+    else {
+        heart.x = 174;
+        heart.y = y+8;
+    }
 
     heart.visible = false;
     initChoice();
