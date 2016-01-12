@@ -106,9 +106,71 @@ function renderText(t, string, sound, textSpeed) {
                 nextLetterTime = game.time.now + textSpeed;
         }
         else {
-            if (sound && sound.isPlaying) sound.onLoop.add(function() { sound.stop() });
+            if (sound && sound.isPlaying) sound.onLoop.add(function() { sound.stop(); sound.onLoop.removeAll(); });
             if (textFinishedCallback) textFinishedCallback();
         }
+    }
+}
+
+var leftChoiceFilled;
+
+function setupChoice(y) {
+    if (!choice1) choice1 = game.add.bitmapText(204, y, 'determination_font', '', 29);
+    else choice1.y = y;
+    if (!choice2) choice2 = game.add.bitmapText(400, y, 'determination_font', '', 29);
+    else choice2.y = y;
+
+    choiceState = 0;
+
+    if (!heart) heart = game.add.sprite(174, y+8, 'heart');
+    else heart.y = y+8;
+
+    heart.visible = false;
+    initChoice();
+}
+
+function initChoice() {
+    nextLetterIndex = 0;
+    nextLetterTime = 0;
+    leftChoiceFilled = false;
+}
+
+function renderChoice(c1, c2, s1, s2, nextState) {
+    if (game.time.now > nextLetterTime) {
+        if (!leftChoiceFilled) {
+            if (nextLetterIndex < s1.length) {
+                if(s1[nextLetterIndex] == ' ') {
+                    c1.setText(c1.text + '  ');
+                    nextLetterIndex++;
+                }
+
+                c1.setText(c1.text + s1[nextLetterIndex]);
+                nextLetterIndex++;
+            }
+            else {
+                nextLetterIndex = 0;
+                leftChoiceFilled = true;
+            }
+        }
+        else {
+            if (nextLetterIndex < s2.length) {
+                if(s2[nextLetterIndex] == ' ') {
+                    c2.setText(c2.text + '  ');
+                    nextLetterIndex++;
+                }
+
+                c2.setText(c2.text + s2[nextLetterIndex]);
+                nextLetterIndex++;
+            }
+            else {
+                dialogState = nextState;
+                heart.visible = true;
+            }
+        }
+        if (spaceDown())
+            nextLetterTime = game.time.now;
+        else
+            nextLetterTime = game.time.now + 40;
     }
 }
 
@@ -137,10 +199,31 @@ function textWaiter(transitionState, nextState, t) {
 function textFinishWaiter() {
     if (spaceDown()) {
         lockSpace();
-        text.destroy();
-        text = null;
-        border.destroy();
-        border = null;
+        if (text) {
+            text.destroy();
+            text = null;
+        }
+
+        if (border) {
+            border.destroy();
+            border = null;
+        }
+
+        if (choice1) {
+            choice1.destroy();
+            choice1 = null;
+        }
+
+        if (choice2) {
+            choice2.destroy();
+            choice2 = null;
+        }
+
+        if (heart) {
+            heart.destroy();
+            heart = null;
+        }
+
         if (avatar)  {
             avatar.destroy()
             avatar = null;
@@ -159,11 +242,14 @@ function genericWaiter(transitionState) {
 var choiceState;
 function choiceWaiter(firstChoiceState, secondChoiceState) {
     if (spaceDown()) {
-        if (choiceState == 1)
+        if (choiceState == 0)
             dialogState = firstChoiceState;
         else
             dialogState = secondChoiceState;
 
+        heart.visible = false;
+        choice1.setText('');
+        choice2.setText('');
         lockSpace(0.3);
     }
     else if (choiceState == 0 && cursors.right.isDown) {

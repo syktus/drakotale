@@ -5,6 +5,7 @@ var border, text, avatar, choice1, choice2, heart;
 /* GLOBAL STATE FLAGS */
 
 var globalPenguinCutsceneTriggered = true;//false;
+var globalMlodyDialog1Completed = true;//false;
 
 /**********************/
 

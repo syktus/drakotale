@@ -8,7 +8,7 @@ var level4_text_content4 = '* Spoks, nie ma sprawy!\n* ...\n* Po co mi suszarka?
 var level4_text_content5 = '* A jakoś tak... \n* chciałem poczuć trochę\n   wiatru we włosach.';
 var level4_text_content6 = '* I ciepła na skórze...\n* E, w sumie i tak nie mam\n   ani tego ani tego...';
 
-var level4_choice_content1 = ['Ale ty masz włosy', 'Hehe! łysa kupa kości'];
+var level4_choice_content1 = ['Ale ty masz\nwłosy...', 'Hehe!\nŁysa kupa kości!'];
 
 var level4_text_content7 = '* Jesteś u pani!';
 var level4_text_content8 = '* Mam...?\n   A myślałem że już\n   wyłysiałem ze starości.';
@@ -87,7 +87,8 @@ var level4 = {
         mlody = game.add.sprite(200, 200, 'mlody');
         mlody.frame = 1;
 
-        mlody_trigger = createTrigger(240, 320, 160, 5);
+        if (!globalMlodyDialog1Completed)
+            mlody_trigger = createTrigger(240, 320, 160, 5);
 
         mlody_talk = game.add.audio('mlody', 1, true);
 
@@ -107,7 +108,7 @@ var level4 = {
     update: function () {
         if (loadBlock) return;
 
-        if (dialogState >= 0 && dialogState <= 100) {
+        if (dialogState >= 0 && dialogState <= 20) {
             stopDrako();
             level4.mlodyDialogCutscene();
         }
@@ -185,18 +186,33 @@ var level4 = {
             genericWaiter(12);
         else if (dialogState == 12) {
             text.setText('');
-            level4.setupChoice();
+            setupChoice(348);
             dialogState = 13;
         }
         else if (dialogState == 13)
-            choiceWaiter(14,15);
-    },
-
-    setupChoice: function() {
-        choice1 = game.add.bitmapText(204, 348, 'determination_font', 'lorem ipsum', 29);
-        choice2 = game.add.bitmapText(400, 348, 'determination_font', 'lorem ipsum dolor', 29);
-        choiceState = 0;
-        heart = game.add.sprite(174, 356, 'heart');
+            renderChoice(choice1, choice2, level4_choice_content1[0], level4_choice_content1[1], 14);
+        else if (dialogState == 14)
+            choiceWaiter(15, 17);
+        else if (dialogState == 15) {
+            displayText(text, function () { dialogState = 19; });
+            dialogState = 16;
+        }
+        else if (dialogState == 16)
+            renderText(text, level4_text_content7, mlody_talk);
+        else if (dialogState == 17) {
+            displayText(text, function () { dialogState = 19; });
+            dialogState = 18;
+        }
+        else if (dialogState == 18)
+            renderText(text, level4_text_content8, mlody_talk);
+        else if (dialogState == 19) {
+            mlody_trigger.destroy();
+            mlody_trigger = null;
+            globalMlodyDialog1Completed = true;
+            dialogState = 20;
+        }
+        else if (dialogState == 20)
+            textFinishWaiter();
     }
 };
 
