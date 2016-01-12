@@ -12,7 +12,7 @@ var level4_choice_content1 = ['Ale ty masz\nwłosy...', 'Hehe!\nŁysa kupa kośc
 
 var level4_text_content7 = '* Jesteś u pani!';
 var level4_text_content8 = '* Mam...?\n   A myślałem że już\n   wyłysiałem ze starości.';
-var level4_text_content9 = '* Yolo, czyli raz sie...\n   biega z suszarką.';
+var level4_text_content9 = '* Yolo, czyli raz się...\n   biega z suszarką.';
 var level4_text_content10 = '* Grat...\n   Ale jeszcze pociągnie Maple.';
 var level4_text_content11 = '* Chociaż gry już\n   chyba nie dla mnie...';
 
