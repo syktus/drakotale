@@ -1,4 +1,4 @@
-var mlody_trigger, mlody_trigger2, computer_trigger;
+var mlody_trigger, mlody_trigger2, computer_trigger, door2_closed_trigger;
 var mlody, mlody_head, mlody_talk;
 
 var level4_text_content1 = '* Zapraszam.\n* Jestem Myriad.\n* Myriad Pro.';
@@ -26,6 +26,7 @@ var level4_choice_content3 = ['Jesteś\npiękny\ni MŁODY!', 'Jesteś\nSTARY\ni 
 var level4_text_content14 = '* ...no...chyba... ty.';
 var level4_text_content15 = '* Hm... skoro tak mówisz!\n   YOLO!';
 var level4_text_content16 = '* To ja pogram...\n   A ty idź dalej!';
+var level4_text_content17 = 'Drzwi są zamknięte.';
 
 var level4 = {
     preload: function () {
@@ -94,8 +95,10 @@ var level4 = {
 
         mlody_trigger2 = createTrigger(180, 210, 86, 80);
 
-        if(!globalComputerDialogCompleted)
+        if(!globalComputerDialogCompleted) {
             computer_trigger = createTrigger(390, 160, 50, 40);
+            door2_closed_trigger = createTrigger(280, 130, 80, 25);
+        }
 
         if (nextDrakoX && nextDrakoY)
             createDrako(nextDrakoX, nextDrakoY);
@@ -128,6 +131,10 @@ var level4 = {
             stopDrako();
             level4.computerDialogCutscene();
         }
+        else if (dialogState >= 45 && dialogState <= 46) {
+            stopDrako();
+            level4.door2ClosedDialogCutscene();
+        }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(302, 180, 'level3'));
@@ -145,6 +152,9 @@ var level4 = {
 
             if (!globalComputerDialogCompleted && spaceDown() && game.physics.arcade.overlap(drako, computer_trigger))
                 level4.computerDialogInit();
+
+            if (!globalComputerDialogCompleted && spaceDown() && game.physics.arcade.overlap(drako, door2_closed_trigger))
+                level4.door2ClosedDialogInit();
 
             moveDrako();
         }
@@ -176,6 +186,11 @@ var level4 = {
         if(computer_trigger) {
             computer_trigger.destroy();
             computer_trigger = null;
+        }
+
+        if(door2_closed_trigger) {
+            door2_closed_trigger.destroy();
+            door2_closed_trigger = null;
         }
     },
 
@@ -335,6 +350,21 @@ var level4 = {
         }
         else if (dialogState == 44)
             renderText(text, level4_text_content14, mlody_talk);
+    },
+
+    door2ClosedDialogInit: function() {
+        dialogState = 45;
+        border = game.add.sprite(31, 318, 'ramka');
+        text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
+        displayText(text, function() { dialogState = 46 });
+        lockSpace(0.3);
+    },
+
+    door2ClosedDialogCutscene: function() {
+        if (dialogState == 45)
+            renderText(text, level4_text_content17);
+        else if (dialogState == 46)
+            textFinishWaiter();
     }
 };
 
