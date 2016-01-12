@@ -29,20 +29,20 @@ var level4_text_content16 = '* To ja pogram...\n   A ty idź dalej!';
 
 var level4 = {
     preload: function () {
-        game.load.image('bg_level4', 'assets/level4.png');
+        game.load.image('bg_level4', 'assets/levels/level4.png');
 
-        game.load.spritesheet('mlody', 'assets/mlody_sprite.png', 46, 65);
-        game.load.spritesheet('mlody_head', 'assets/mlody_sprite_head.png', 46, 35);
-        game.load.image('av_mlody_sad', 'assets/av_mlody_sad.png');
-        game.load.image('av_mlody_happy', 'assets/av_mlody_happy.png');
+        game.load.spritesheet('mlody', 'assets/characters/mlody_sprite.png', 46, 65);
+        game.load.spritesheet('mlody_head', 'assets/characters/mlody_sprite_head.png', 46, 35);
+        game.load.image('av_mlody_sad', 'assets/avatars/av_mlody_sad.png');
+        game.load.image('av_mlody_happy', 'assets/avatars/av_mlody_happy.png');
 
-        game.load.audio('mlody', 'assets/talk_mlo.ogg');
+        game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
 
-        game.load.image('heart', 'assets/heart.png');
-        game.load.image('ramka', 'assets/ramka.png');
-        game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
+        game.load.image('heart', 'assets/misc/heart.png');
+        game.load.image('ramka', 'assets/misc/ramka.png');
+        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
+        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
         loadTransitionPlugin();
     },

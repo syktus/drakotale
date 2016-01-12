@@ -18,23 +18,23 @@ var level2_text_content10 = '* Spodziewałem się mrożonych brokułów.\n   Ale
 
 var level2 = {
     preload: function() {
-        game.load.image('bg_level2', 'assets/level2.png');
+        game.load.image('bg_level2', 'assets/levels/level2.png');
 
-        game.load.image('pin1', 'assets/pin1.png');
-        game.load.image('pin2', 'assets/pin2.png');
-        game.load.image('pin3', 'assets/pin3.png');
-        game.load.image('pin4', 'assets/pin4.png');
+        game.load.image('pin1', 'assets/characters/pin1.png');
+        game.load.image('pin2', 'assets/characters/pin2.png');
+        game.load.image('pin3', 'assets/characters/pin3.png');
+        game.load.image('pin4', 'assets/characters/pin4.png');
 
-        game.load.image('mlody_suszy', 'assets/mlody_suszy.png');
+        game.load.image('mlody_suszy', 'assets/characters/mlody_suszy.png');
 
-        game.load.audio('pin', 'assets/talk_pin.ogg');
-        game.load.audio('pin_slow', 'assets/talk_pin2.ogg');
-        game.load.audio('mlody', 'assets/talk_mlo.ogg');
+        game.load.audio('pin', 'assets/sounds/talk_pin.ogg');
+        game.load.audio('pin_slow', 'assets/sounds/talk_pin2.ogg');
+        game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
 
-        game.load.image('ramka', 'assets/ramka.png');
-        game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
+        game.load.image('ramka', 'assets/misc/ramka.png');
+        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
+        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
         loadTransitionPlugin();
     },

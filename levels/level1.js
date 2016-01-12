@@ -4,22 +4,18 @@ var level1_text_content1 = 'NAPIS POD OBRAZEM:\n\nLooo0o0o000v11000ve';
 
 var level1 = {
     preload: function() {
-        game.load.image('bg_level1', 'assets/level1.png');
-        game.load.image('bg_level2', 'assets/level2.png');
-        game.load.image('bg_level3', 'assets/level3.png');
-        game.load.image('bg_level4', 'assets/level4.png');
+        game.load.image('bg_level1', 'assets/levels/level1.png');
+        game.load.image('bg_level2', 'assets/levels/level2.png');
+        game.load.image('bg_level3', 'assets/levels/level3.png');
+        game.load.image('bg_level4', 'assets/levels/level4.png');
 
         /* LEVEL 2 */
 
-        game.load.image('pin1', 'assets/pin1.png');
-        game.load.image('pin2', 'assets/pin2.png');
-        game.load.image('pin3', 'assets/pin3.png');
-        game.load.image('pin4', 'assets/pin4.png');
-        game.load.image('mlody_suszy', 'assets/mlody_suszy.png');
-
-        game.load.audio('nip', 'assets/talk_pin.ogg');
-        game.load.audio('nip_slow', 'assets/talk_pin2.ogg');
-        game.load.audio('mlody', 'assets/talk_mlo.ogg');
+        game.load.image('pin1', 'assets/characters/pin1.png');
+        game.load.image('pin2', 'assets/characters/pin2.png');
+        game.load.image('pin3', 'assets/characters/pin3.png');
+        game.load.image('pin4', 'assets/characters/pin4.png');
+        game.load.image('mlody_suszy', 'assets/characters/mlody_suszy.png');
 
         /* LEVEL 3 */
 
@@ -27,16 +23,25 @@ var level1 = {
 
         /* LEVEL 4 */
 
-        game.load.spritesheet('mlody', 'assets/mlody_sprite.png', 46, 65);
-        game.load.spritesheet('mlody_head', 'assets/mlody_sprite_head.png', 46, 35);
+        game.load.spritesheet('mlody', 'assets/characters/mlody_sprite.png', 46, 65);
+        game.load.spritesheet('mlody_head', 'assets/characters/mlody_sprite_head.png', 46, 35);
+
+        game.load.image('av_mlody_sad', 'assets/avatars/av_mlody_sad.png');
+        game.load.image('av_mlody_happy', 'assets/avatars/av_mlody_happy.png');
+
+        /* SOUNDS */
+
+        game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
+        game.load.audio('nip_slow', 'assets/sounds/talk_pin2.ogg');
+        game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
 
         /* COMMON */
 
-        game.load.image('heart', 'assets/heart.png');
-        game.load.image('ramka', 'assets/ramka.png');
-        game.load.spritesheet('drako', 'assets/drako.png', 36, 60);
+        game.load.image('heart', 'assets/misc/heart.png');
+        game.load.image('ramka', 'assets/misc/ramka.png');
+        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/determination_sans_0.png', 'assets/determination_sans.xml');
+        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
         loadTransitionPlugin();
     },
