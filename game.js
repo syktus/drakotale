@@ -7,6 +7,8 @@ var border, text, avatar, choice1, choice2, heart;
 var globalPenguinCutsceneTriggered = true;//false;
 var globalMlodyDialog1Completed = true;//false;
 var globalComputerDialogCompleted = true;//false;
+var globalMiszaDialog1Triggered = true;//false;
+var globalParrotTaken = true;//false;
 var globalParrotDelivered = false;
 var globalLegoDoorDestroyed = false;
 
@@ -24,5 +26,8 @@ game.state.add('level2', level2);
 game.state.add('level3', level3);
 game.state.add('level4', level4);
 game.state.add('level5', level5);
+game.state.add('level6', level6);
 
-game.state.start('level5');
+game.state.start('level6');
+
+takenItem = ITEM_PARROT;

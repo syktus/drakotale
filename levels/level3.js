@@ -9,7 +9,9 @@ var level3 = {
         game.load.image('bg_level3', 'assets/levels/level3.png');
 
         game.load.image('parrot', 'assets/items/item1.png');
+        game.load.image('parrot_carry', 'assets/items/item1_carry.png');
 
+        game.load.image('heart', 'assets/misc/heart.png');
         game.load.image('ramka', 'assets/misc/ramka.png');
         game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
@@ -42,13 +44,16 @@ var level3 = {
 
         col_sprites.push(makeRectangle(250, 0, 30, 200, col));
         col_sprites.push(makeRectangle(360, 0, 30, 200, col));
-        col_sprites.push(makeRectangle(390, 143, 40, 55, col));
+        if(!globalParrotTaken)
+            col_sprites.push(makeRectangle(390, 143, 40, 57, col));
 
         col.visible = false;
 
-        parrot = game.add.sprite(390, 143, 'parrot');
+        if (!globalParrotTaken) {
+            parrot = game.add.sprite(390, 143, 'parrot');
 
-        parrot_trigger = createTrigger(390, 140, 60, 80);
+            parrot_trigger = createTrigger(390, 140, 60, 80);
+        }
 
         if (nextDrakoX && nextDrakoY)
             createDrako(nextDrakoX, nextDrakoY);
@@ -67,13 +72,19 @@ var level3 = {
             stopDrako();
             level3.parrotInteractInactive();
         }
+        else if (dialogState >= 2 && dialogState <= 7) {
+            stopDrako();
+            level3.parrotInteractActive();
+        }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(302, 20, 'level2'));
             game.physics.arcade.collide(drako, door2, doorGenerator(302, 400, 'level4'));
 
-            if (spaceDown() && game.physics.arcade.overlap(drako, parrot_trigger))
+            if (!globalMiszaDialog1Triggered && spaceDown() && game.physics.arcade.overlap(drako, parrot_trigger))
                 level3.parrotDialogInit();
+            else if (!globalParrotTaken && spaceDown() && game.physics.arcade.overlap(drako, parrot_trigger))
+                level3.parrotDialog2Init();
 
             moveDrako();
         }
@@ -106,5 +117,34 @@ var level3 = {
             renderText(text, level3_text_content1);
         else if (dialogState == 1)
             textFinishWaiter();
+    },
+
+    parrotDialog2Init: function() {
+        dialogState = 2;
+        border = game.add.sprite(31, 318, 'ramka');
+        text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
+        displayText(text, function() { dialogState = 3 });
+        lockSpace(0.3);
+    },
+
+    parrotInteractActive: function() {
+        if (dialogState == 2)
+            renderText(text, level3_text_content1);
+        else if (dialogState == 3) {
+            setupChoice(406, true);
+            dialogState = 4;
+        }
+        else if (dialogState == 4)
+            renderChoice(choice1, choice2, 'WEŹ', 'ZOSTAW', 5);
+        else if (dialogState == 5)
+            choiceWaiter(6, 7);
+        else if (dialogState == 6) {
+            takeItem(ITEM_PARROT);
+            globalParrotTaken = true;
+            parrot.visible = false;
+            dialogState = 7;
+        }
+        else if (dialogState == 7)
+            choiceFinish();
     }
 };

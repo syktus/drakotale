@@ -86,7 +86,6 @@ var level4 = {
         col.visible = false;
 
         mlody = game.add.sprite(200, 200, 'mlody');
-        mlody.frame = 1;
 
         if (!globalMlodyDialog1Completed)
             mlody_trigger = createTrigger(240, 320, 160, 5);
@@ -106,10 +105,14 @@ var level4 = {
             createDrako(302, 400);
 
         mlody_head = game.add.sprite(200, 200, 'mlody_head');
-        if (!globalComputerDialogCompleted)
+        if (!globalComputerDialogCompleted) {
             mlody_head.frame = 1;
-        else
+            mlody.frame = 1;
+        }
+        else {
             mlody_head.frame = 0;
+            mlody_head.frame = 0;
+        }
 
         dialogState = -1;
 
@@ -118,6 +121,8 @@ var level4 = {
 
     update: function () {
         if (loadBlock) return;
+
+        if (mlody_head) mlody_head.visible = (drako.y < 235);
 
         if (dialogState >= 0 && dialogState <= 20) {
             stopDrako();

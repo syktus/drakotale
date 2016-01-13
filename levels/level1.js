@@ -9,6 +9,7 @@ var level1 = {
         game.load.image('bg_level3', 'assets/levels/level3.png');
         game.load.image('bg_level4', 'assets/levels/level4.png');
         game.load.image('bg_level5a', 'assets/levels/level5a.png');
+        game.load.image('bg_level6', 'assets/levels/level6.png');
 
         /* LEVEL 2 */
 
@@ -21,6 +22,7 @@ var level1 = {
         /* LEVEL 3 */
 
         game.load.image('parrot', 'assets/item1.png');
+        game.load.image('parrot_carry', 'assets/items/item1_carry.png');
 
         /* LEVEL 4 */
 
@@ -35,12 +37,24 @@ var level1 = {
         game.load.image('nikus', 'assets/characters/kamienikus.png');
         game.load.image('av_nikus', 'assets/avatars/av_nikus.png');
 
+        /* LEVEL 6 */
+
+        game.load.spritesheet('misza', 'assets/characters/misza_sprite.png', 51, 96);
+        game.load.spritesheet('misza_gora', 'assets/characters/misza_sprite_gora.png', 51, 56);
+
+        game.load.image('av_misza_sad', 'assets/avatars/av_misza_sad.png');
+        game.load.image('av_misza_happy', 'assets/avatars/av_misza_happy.png');
+
+        game.load.image('domek', 'assets/level_doodads/domek.png');
+        game.load.image('cage', 'assets/level_doodads/cage.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
         game.load.audio('nip_slow', 'assets/sounds/talk_pin2.ogg');
         game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
         game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
+        game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
 
         /* COMMON */
 
@@ -49,6 +63,7 @@ var level1 = {
         game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
         game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+        game.load.bitmapFont('times_new_misza', 'assets/fonts/times_new_misza_0.png', 'assets/fonts/times_new_misza.xml');
 
         loadTransitionPlugin();
     },

@@ -48,6 +48,7 @@ function stopDrako() {
 
 function createDrako(x, y) {
     drako = game.add.sprite(x, y, 'drako');
+    showCarryItem();
     game.physics.arcade.enable(drako);
 
     drako.body.collideWorldBounds = true;
@@ -94,7 +95,7 @@ function renderText(t, string, sound, textSpeed) {
                 nextLetterIndex++;
             }
 
-            if(string[nextLetterIndex] == 'ą')
+            if(string[nextLetterIndex] == 'ą' && t.font != 'times_new_misza')
                 t.setText(t.text + 'ą ');
             else
                 t.setText(t.text + string[nextLetterIndex]);
@@ -114,17 +115,29 @@ function renderText(t, string, sound, textSpeed) {
 
 var leftChoiceFilled;
 
-function setupChoice(y) {
-    if (!choice1) choice1 = game.add.bitmapText(204, y, 'determination_font', '', 29);
+function setupChoice(y, wide) {
+    if (typeof(wide) === 'undefined') wide = false;
+    if (!choice1) {
+        if (!wide) choice1 = game.add.bitmapText(204, y, 'determination_font', '', 29);
+        else choice1 = game.add.bitmapText(87, y, 'determination_font', '', 29);
+    }
     else choice1.y = y;
-    if (!choice2) choice2 = game.add.bitmapText(400, y, 'determination_font', '', 29);
+
+    if (!choice2) {
+        if (!wide) choice2 = game.add.bitmapText(400, y, 'determination_font', '', 29);
+        else choice2 = game.add.bitmapText(283, y, 'determination_font', '', 29);
+    }
     else choice2.y = y;
 
     choiceState = 0;
 
-    if (!heart) heart = game.add.sprite(174, y+8, 'heart');
+    if (!heart) {
+        if (!wide) heart = game.add.sprite(174, y+8, 'heart');
+        else heart = game.add.sprite(62, y+8, 'heart');
+    }
     else {
-        heart.x = 174;
+        if (!wide) heart.x = 174;
+        else heart = 62;
         heart.y = y+8;
     }
 
@@ -228,11 +241,44 @@ function textFinishWaiter() {
         }
 
         if (avatar)  {
-            avatar.destroy()
+            avatar.destroy();
             avatar = null;
         }
         dialogState = -1;
     }
+}
+
+function choiceFinish() {
+    if (text) {
+        text.destroy();
+        text = null;
+    }
+
+    if (border) {
+        border.destroy();
+        border = null;
+    }
+
+    if (choice1) {
+        choice1.destroy();
+        choice1 = null;
+    }
+
+    if (choice2) {
+        choice2.destroy();
+        choice2 = null;
+    }
+
+    if (heart) {
+        heart.destroy();
+        heart = null;
+    }
+
+    if (avatar)  {
+        avatar.destroy();
+        avatar = null;
+    }
+    dialogState = -1;
 }
 
 function genericWaiter(transitionState) {
