@@ -6,7 +6,9 @@ var border, text, avatar, choice1, choice2, heart;
 
 var globalPenguinCutsceneTriggered = true;//false;
 var globalMlodyDialog1Completed = true;//false;
-var globalComputerDialogCompleted = false;
+var globalComputerDialogCompleted = true;//false;
+var globalParrotDelivered = false;
+var globalLegoDoorDestroyed = false;
 
 /**********************/
 
@@ -21,5 +23,6 @@ game.state.add('level1', level1);
 game.state.add('level2', level2);
 game.state.add('level3', level3);
 game.state.add('level4', level4);
+game.state.add('level5', level5);
 
-game.state.start('level4');
+game.state.start('level5');

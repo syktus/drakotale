@@ -8,6 +8,7 @@ var level1 = {
         game.load.image('bg_level2', 'assets/levels/level2.png');
         game.load.image('bg_level3', 'assets/levels/level3.png');
         game.load.image('bg_level4', 'assets/levels/level4.png');
+        game.load.image('bg_level5a', 'assets/levels/level5a.png');
 
         /* LEVEL 2 */
 
@@ -29,11 +30,17 @@ var level1 = {
         game.load.image('av_mlody_sad', 'assets/avatars/av_mlody_sad.png');
         game.load.image('av_mlody_happy', 'assets/avatars/av_mlody_happy.png');
 
+        /* LEVEL 5 */
+
+        game.load.image('nikus', 'assets/characters/kamienikus.png');
+        game.load.image('av_nikus', 'assets/avatars/av_nikus.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
         game.load.audio('nip_slow', 'assets/sounds/talk_pin2.ogg');
         game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
+        game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
 
         /* COMMON */
 
