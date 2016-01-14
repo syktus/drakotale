@@ -15,9 +15,12 @@ var globalSucharToldToRyok = true;//false;
 var globalNokiaTaken = true;//false;
 var globalLegoDoorDestroyed = true;//false;
 var globalMiyaChatComplete = true;//false;
-var globalKumaAskedForKapcie = false;
-var globalKapcieTaken = false;
-var globalKumaHelped = false;
+var globalKumaAskedForKapcie = true;//false;
+var globalKapcieTaken = true;//false;
+var globalKumaGotKapcie = true;//false;
+var globalClothTaken = true;//false;
+var globalClothWashed = true;//false;
+var globalKumaHelped = true;//false;
 
 /**********************/
 
@@ -37,6 +40,7 @@ game.state.add('level6', level6);
 game.state.add('level7', level7);
 game.state.add('level8', level8);
 game.state.add('level9', level9);
+game.state.add('level10', level10);
 
 game.state.start('level9');
 

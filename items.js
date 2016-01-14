@@ -2,8 +2,10 @@ var ITEM_NONE = 0;
 var ITEM_PARROT = 1;
 var ITEM_NOKIA = 2;
 var ITEM_KAPCIE = 3;
+var ITEM_CLOTH_DIRTY = 4;
+var ITEM_CLOTH_CLEAN = 5;
 
-var itemSprites = ['', 'parrot_carry', 'nokia_carry', 'kapcie_carry'];
+var itemSprites = ['', 'parrot_carry', 'nokia_carry', 'kapcie_carry', 'cloth_dirty_carry', 'cloth_carry'];
 
 var takenItem = ITEM_NONE;
 

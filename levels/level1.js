@@ -16,6 +16,7 @@ var level1 = {
         game.load.image('bg_level8a', 'assets/levels/level8a.png');
         game.load.image('bg_level8b', 'assets/levels/level8b.png');
         game.load.image('bg_level9', 'assets/levels/level9.png');
+        game.load.image('bg_level10', 'assets/levels/level10.png');
 
         /* LEVEL 2 */
 
@@ -78,6 +79,16 @@ var level1 = {
         game.load.spritesheet('miya', 'assets/characters/miya_sprite.png', 37, 70);
         game.load.spritesheet('bunny', 'assets/level_doodads/bunny.png', 50, 53);
 
+        /* LEVEL 10 */
+
+        game.load.spritesheet('kuma', 'assets/characters/kuma_sprite.png', 50, 104);
+
+        game.load.image('av_kuma_sad', 'assets/avatars/av_kuma_sad.png');
+        game.load.image('av_kuma_happy', 'assets/avatars/av_kuma_happy.png');
+
+        game.load.image('cloth_dirty_carry', 'assets/items/item4a_carry.png');
+        game.load.image('cloth_carry', 'assets/items/item4b_carry.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
@@ -87,6 +98,7 @@ var level1 = {
         game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
         game.load.audio('ryok', 'assets/sounds/talk_ryok.ogg');
         game.load.audio('miya', 'assets/sounds/talk_miya.ogg');
+        game.load.audio('kuma', 'assets/sounds/talk_kuma.ogg');
 
         /* COMMON */
 

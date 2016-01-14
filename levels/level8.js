@@ -8,6 +8,7 @@ var level8_text_content4 = 'Pralka.\nPierze ubrania, myśli i pieniądze.';
 var level8_text_content5 = 'W ścianie są jakieś podejrzane\nwyżłobienia...';
 var level8_text_content6 = 'Tutaj ewidentnie są sekretne drzwi.\nAle czegoś jeszcze brakuje,\nżeby je otworzyć';
 var level8_text_content7 = 'Legendy twierdzą, że jest to\nnajtwardszy przedmiot na świecie...' ;
+var level8_text_content8 = '* wrrrruuum pioru pioru *';
 
 var level8 = {
     preload: function () {
@@ -100,6 +101,10 @@ var level8 = {
             stopDrako();
             level8.hiddenDoorDialogCutscene();
         }
+        else if (dialogState >= 16 && dialogState <= 20) {
+            stopDrako();
+            level8.washmachineInteractActive();
+        }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(24, 200, 'level7'));
@@ -110,10 +115,13 @@ var level8 = {
             if (!globalNokiaTaken && spaceDown() && game.physics.arcade.overlap(drako, nokia_trigger))
                 level8.nokiaDialogInit();
 
-            if (spaceDown() && game.physics.arcade.overlap(drako, washmachine_trigger))
+            if (!globalClothTaken && spaceDown() && game.physics.arcade.overlap(drako, washmachine_trigger))
                 level8.washmachineDialogInit();
-            //else if (!globalParrotTaken && spaceDown() && game.physics.arcade.overlap(drako, parrot_trigger))
-            //    level3.parrotDialog2Init();
+            else if (!globalClothWashed && spaceDown() && game.physics.arcade.overlap(drako, washmachine_trigger))
+                level8.washmachineDialog2Init();
+            else if (spaceDown() && game.physics.arcade.overlap(drako, washmachine_trigger))
+                level8.washmachineDialogInit();
+
 
             if (spaceDown() && game.physics.arcade.overlap(drako, shoe_trigger))
                 level8.shoeDialogInit();
@@ -172,6 +180,32 @@ var level8 = {
             renderText(text, level8_text_content4);
         else if (dialogState == 1)
             textFinishWaiter();
+    },
+
+    washmachineDialog2Init: function() {
+        dialogState = 16;
+        border = game.add.sprite(31, 318, 'ramka');
+        text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
+        displayText(text, function() { dialogState = 17 });
+        lockSpace(0.3);
+    },
+
+    washmachineInteractActive: function() {
+        if (dialogState == 16)
+            renderText(text, level8_text_content8);
+        else if (dialogState == 17){
+            globalClothWashed = true;
+            dropItem();
+            dialogState = 18;
+        }
+        else if (dialogState == 18)
+            genericWaiter(19);
+        else if (dialogState == 19) {
+            takeItem(ITEM_CLOTH_CLEAN);
+            dialogState = 20;
+        }
+        else if (dialogState == 20)
+            choiceFinish();
     },
 
     shoeDialogInit: function() {
