@@ -12,8 +12,12 @@ var globalParrotTaken = true;//false;
 var globalParrotDelivered = true;//false;
 var globalRyokFirstChatPassed = true;//false;
 var globalSucharToldToRyok = true;//false;
-var globalNokiaTaken = false;
-var globalLegoDoorDestroyed = false;
+var globalNokiaTaken = true;//false;
+var globalLegoDoorDestroyed = true;//false;
+var globalMiyaChatComplete = true;//false;
+var globalKumaAskedForKapcie = false;
+var globalKapcieTaken = false;
+var globalKumaHelped = false;
 
 /**********************/
 
@@ -32,7 +36,8 @@ game.state.add('level5', level5);
 game.state.add('level6', level6);
 game.state.add('level7', level7);
 game.state.add('level8', level8);
+game.state.add('level9', level9);
 
-game.state.start('level8');
+game.state.start('level9');
 
 //takenItem = ITEM_PARROT;
