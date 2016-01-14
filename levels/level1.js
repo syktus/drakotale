@@ -76,6 +76,7 @@ var level1 = {
         game.load.image('av_miya_happy', 'assets/avatars/av_miya_happy.png');
 
         game.load.spritesheet('miya', 'assets/characters/miya_sprite.png', 37, 70);
+        game.load.spritesheet('bunny', 'assets/level_doodads/bunny.png', 50, 53);
 
         /* SOUNDS */
 

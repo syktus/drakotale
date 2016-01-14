@@ -1,5 +1,6 @@
 var miya_trigger, door3_closed_trigger, passage_trigger, kapcie_trigger;
 var miya, miya_front, miya_talk, kapcie;
+var bunny, bunnies, nextBunny, bunniesMoving;
 
 var level9_text_content1 = '* Och, cześć! Szukasz wyjścia?\n* Hmm...\n* ...';
 var level9_text_content2 = '* Przepuściłabym cię,\n   ale... mam dylemat...\n* Proszę, powiedz mi!';
@@ -25,6 +26,8 @@ var level9_text_content16 = '* Hej, stój!\n   Nie możesz jeszcze tam iść!';
 
 var level9_text_content17 = 'Ręcznie robione kapcie.\nMięciutkie i puchate.';
 
+var level9_text_content18 = 'Króliczki przybywajcie!';
+
 var level9 = {
     preload: function () {
         game.load.image('bg_level9', 'assets/levels/level9.png');
@@ -36,6 +39,8 @@ var level9 = {
         game.load.image('av_miya_happy', 'assets/avatars/av_miya_happy.png');
 
         game.load.spritesheet('miya', 'assets/characters/miya_sprite.png', 37, 70);
+
+        game.load.spritesheet('bunny', 'assets/level_doodads/bunny.png', 50, 53);
 
         game.load.audio('miya', 'assets/sounds/talk_miya.ogg');
 
@@ -125,6 +130,9 @@ var level9 = {
         }
 
         dialogState = -1;
+        bunnies = 0;
+        bunniesMoving = false;
+        bunny = [];
 
         setLoadBlock();
     },
@@ -133,6 +141,11 @@ var level9 = {
         if (loadBlock) return;
 
         if (miya_front) miya_front.visible = (drako.y < 220);
+
+        if (bunniesMoving) {
+            level9.moveBunnies();
+            level9.checkBunnies();
+        }
 
         if (dialogState >= 0 && dialogState <= 1) {
             stopDrako();
@@ -158,6 +171,10 @@ var level9 = {
             stopDrako();
             level9.kapcieInteractActive();
         }
+        else if (dialogState >= 44 && dialogState <= 46) {
+            stopDrako();
+            level9.miyaDialog2Cutscene();
+        }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(580, 200, 'level5'));
@@ -175,8 +192,10 @@ var level9 = {
 
             if (!globalMiyaChatComplete && spaceDown() && game.physics.arcade.overlap(drako, miya_trigger))
                 level9.miyaDialogInit();
-            else if (spaceDown() && game.physics.arcade.overlap(drako, miya_trigger))
+            else if (!globalKumaHelped && spaceDown() && game.physics.arcade.overlap(drako, miya_trigger))
                 level9.miyaDialog1bInit();
+            else if (spaceDown() && game.physics.arcade.overlap(drako, miya_trigger))
+                level9.miyaDialog2Init();
 
             if (!globalKapcieTaken && !globalKumaAskedForKapcie && spaceDown() && game.physics.arcade.overlap(drako, kapcie_trigger))
                 level9.kapcieDialogInit();
@@ -228,6 +247,13 @@ var level9 = {
         if(kapcie_trigger) {
             kapcie_trigger.destroy();
             kapcie_trigger = null;
+        }
+
+        for (var i = 0; i<bunnies; i++) {
+            if (bunny[i]) {
+                bunny[i].destroy();
+                bunny[i] = null;
+            }
         }
     },
 
@@ -416,19 +442,61 @@ var level9 = {
     },
 
     miyaDialog2Init: function() {
-        dialogState = 0;
+        dialogState = 44;
         border = game.add.sprite(31, 318, 'ramka');
         avatar = game.add.sprite(49, 340, 'av_miya_happy');
         text = game.add.bitmapText(174, 348, 'determination_font', '', 29);
-        displayText(text, function() { dialogState = 1 });
+        displayText(text, function() { dialogState = 45 });
         lockSpace(0.3);
     },
 
     miyaDialog2Cutscene: function() {
-        if (dialogState == 0)
-            renderText(text, level3_text_content1);
-        else if (dialogState == 1)
+        if (dialogState == 44)
+            renderText(text, level9_text_content18);
+        else if (dialogState == 45) {
+            level9.generateBunny();
+            bunniesMoving = true;
+            dialogState = 46;
+            nextBunny = game.time.now + 200;
+        }
+        else if (dialogState == 46)
+        {
+            if (game.time.now > nextBunny) {
+                level9.generateBunny();
+                nextBunny = game.time.now + 200;
+            }
             textFinishWaiter();
+        }
+    },
+
+    generateBunny: function() {
+        bunny[bunnies++] = game.add.sprite(640, Math.random() * 430, 'bunny');
+        bunny[bunnies-1].animations.add('jump', [0, 1, 2, 3, 4, 5], 10, true);
+        bunny[bunnies-1].animations.play('jump');
+    },
+
+    moveBunnies: function() {
+        var deltaTime = game.time.elapsed / 1000;
+
+        for (var i = 0; i<bunnies; i++) {
+            if (bunny[i]) {
+                bunny[i].x -= 100 * deltaTime;
+                if (bunny[i].x < -60) {
+                    bunny[i].destroy();
+                    bunny[i] = null;
+                }
+            }
+        }
+    },
+
+    checkBunnies: function() {
+        bunniesMoving = false;
+        for (var i = 0; i<bunnies; i++) {
+            if (bunny[i]) {
+                bunniesMoving = true;
+                break;
+            }
+        }
     }
 
 };

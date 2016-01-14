@@ -313,5 +313,5 @@ var level7 = {
             renderText(text, level7_text_content13);
         else if (dialogState == 36)
             textFinishWaiter();
-    },
+    }
 };
