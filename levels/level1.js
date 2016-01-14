@@ -10,6 +10,7 @@ var level1 = {
         game.load.image('bg_level4', 'assets/levels/level4.png');
         game.load.image('bg_level5a', 'assets/levels/level5a.png');
         game.load.image('bg_level5b', 'assets/levels/level5b.png');
+        game.load.image('bg_level5c', 'assets/levels/level5c.png');
         game.load.image('bg_level6', 'assets/levels/level6.png');
         game.load.image('bg_level7', 'assets/levels/level7.png');
         game.load.image('bg_level8a', 'assets/levels/level8a.png');

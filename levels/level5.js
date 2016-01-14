@@ -1,4 +1,4 @@
-var nikus_trigger, door3_closed_trigger, door4_closed_trigger;
+var nikus_trigger, door3_closed_trigger, door4_closed_trigger, door4_col;
 var nikus, nikus_talk;
 
 var level5_text_content1 = '* ♩ Olololo! ♩\n   ♩ Tutaj jest wiele drzwi! ♩';
@@ -11,13 +11,14 @@ var level5_text_content6 = '* Wygląda to na dziurę...\n   ...zatkaną kurzem.'
 
 var level5_text_content7 = '* Wyglądają na niezniszczalne.';
 
-var level5_text_content8 = '* Drzwi pękły pod naporem przytłaczającej siły Nokii!';
+var level5_text_content8 = '* Drzwi pękły pod naporem\n   przytłaczającej siły Nokii!';
 
 
 var level5 = {
     preload: function () {
         game.load.image('bg_level5a', 'assets/levels/level5a.png');
         game.load.image('bg_level5b', 'assets/levels/level5b.png');
+        game.load.image('bg_level5c', 'assets/levels/level5c.png');
 
         game.load.image('nikus', 'assets/characters/kamienikus.png');
         game.load.image('av_nikus', 'assets/avatars/av_nikus.png');
@@ -43,13 +44,17 @@ var level5 = {
 
         if (!globalParrotDelivered)
             bg = game.add.sprite(0, 0, 'bg_level5a');
-        else
+        else if (!globalLegoDoorDestroyed)
             bg = game.add.sprite(0, 0, 'bg_level5b');
+        else
+            bg = game.add.sprite(0, 0, 'bg_level5c');
 
         door1 = createTrigger(0, 475, 640, 5);
         door2 = createTrigger(280, 130, 80, 5);
 
         door3 = createTrigger(0, 160, 5, 135);
+        door4 = createTrigger(635, 160, 5, 135);
+
         door3_closed_trigger = createTrigger(0, 160, 40, 135);
         door4_closed_trigger = createTrigger(600, 160, 40, 135);
 
@@ -67,12 +72,14 @@ var level5 = {
         col_sprites.push(makeRectangle(0, 292, 112, 200, col));
         col_sprites.push(makeRectangle(112, 413, 120, 80, col));
         col_sprites.push(makeRectangle(360, 0, 280, 160, col));
-        col_sprites.push(makeRectangle(620, 160, 20, 135, col));
         col_sprites.push(makeRectangle(540, 160, 140, 36, col));
         col_sprites.push(makeRectangle(528, 292, 112, 200, col));
         col_sprites.push(makeRectangle(408, 413, 120, 80, col));
 
         col.visible = false;
+
+        if (!globalLegoDoorDestroyed)
+            door4_col = createTrigger(620, 160, 20, 135);
 
         nikus = game.add.sprite(80, 120, 'nikus');
 
@@ -105,11 +112,19 @@ var level5 = {
             stopDrako();
             level5.door4ClosedDialogCutscene();
         }
+        else if (dialogState >= 14 && dialogState <= 16) {
+            stopDrako();
+            level5.door4ClosedDialog2Cutscene();
+        }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(302, 150, 'level4'));
             game.physics.arcade.collide(drako, door2, doorGenerator(302, 400, 'level6'));
             game.physics.arcade.collide(drako, door3, doorGenerator(580, 200, 'level7'));
+            game.physics.arcade.collide(drako, door4, doorGenerator(24, 200, 'level9'));
+
+            if (!globalLegoDoorDestroyed)
+                game.physics.arcade.collide(drako, door4_col);
 
             if (spaceDown() && game.physics.arcade.overlap(drako, nikus_trigger))
                 level5.nikusDialogInit();
@@ -117,8 +132,10 @@ var level5 = {
             if (!globalParrotDelivered && spaceDown() && game.physics.arcade.overlap(drako, door3_closed_trigger))
                 level5.door3ClosedDialogInit();
 
-            if (!globalLegoDoorDestroyed && spaceDown() && game.physics.arcade.overlap(drako, door4_closed_trigger))
+            if (!globalNokiaTaken && !globalLegoDoorDestroyed && spaceDown() && game.physics.arcade.overlap(drako, door4_closed_trigger))
                 level5.door4ClosedDialogInit();
+            else if (!globalLegoDoorDestroyed && spaceDown() && game.physics.arcade.overlap(drako, door4_closed_trigger))
+                level5.door4ClosedDialog2Init();
 
             moveDrako();
         }
@@ -150,6 +167,11 @@ var level5 = {
         if(nikus_talk) {
             nikus_talk.destroy();
             nikus_talk = null;
+        }
+
+        if(door4_col) {
+            door4_col.destroy();
+            door4_col = null;
         }
     },
 
@@ -212,6 +234,27 @@ var level5 = {
         if (dialogState == 12)
             renderText(text, level5_text_content7);
         else if (dialogState == 13)
+            textFinishWaiter();
+    },
+
+    door4ClosedDialog2Init: function() {
+        dialogState = 14;
+        border = game.add.sprite(31, 318, 'ramka');
+        text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
+        displayText(text, function() { dialogState = 15; });
+        lockSpace(0.3);
+    },
+
+    door4ClosedDialog2Cutscene: function() {
+        if (dialogState == 14)
+            renderText(text, level5_text_content8);
+        else if (dialogState == 15) {
+            globalLegoDoorDestroyed = true;
+            bg.loadTexture('bg_level5c');
+            dialogState = 16;
+            dropItem();
+        }
+        else if (dialogState == 16)
             textFinishWaiter();
     }
 };
