@@ -1,7 +1,8 @@
 var ITEM_NONE = 0;
 var ITEM_PARROT = 1;
+var ITEM_NOKIA = 2;
 
-var itemSprites = ['', 'parrot_carry'];
+var itemSprites = ['', 'parrot_carry', 'nokia_carry'];
 
 var takenItem = ITEM_NONE;
 

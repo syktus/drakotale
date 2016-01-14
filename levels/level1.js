@@ -12,6 +12,8 @@ var level1 = {
         game.load.image('bg_level5b', 'assets/levels/level5b.png');
         game.load.image('bg_level6', 'assets/levels/level6.png');
         game.load.image('bg_level7', 'assets/levels/level7.png');
+        game.load.image('bg_level8a', 'assets/levels/level8a.png');
+        game.load.image('bg_level8b', 'assets/levels/level8b.png');
 
         /* LEVEL 2 */
 
@@ -57,6 +59,11 @@ var level1 = {
 
         game.load.image('av_ryok_sad', 'assets/avatars/av_ryok_sad.png');
         game.load.image('av_ryok_happy', 'assets/avatars/av_ryok_happy.png');
+
+        /* LEVEL 8 */
+
+        game.load.image('nokia', 'assets/items/item2.png');
+        game.load.image('nokia_carry', 'assets/items/item2_carry.png');
 
         /* SOUNDS */
 
