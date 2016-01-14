@@ -27,6 +27,16 @@ function genericCleanup() {
         door2 = null;
     }
 
+    if(door3) {
+        door3.destroy();
+        door3 = null;
+    }
+
+    if(door4) {
+        door4.destroy();
+        door4 = null;
+    }
+
     if(drako)
     {
         drako.destroy();

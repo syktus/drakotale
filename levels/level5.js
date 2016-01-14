@@ -17,6 +17,7 @@ var level5_text_content8 = '* Drzwi pękły pod naporem przytłaczającej siły 
 var level5 = {
     preload: function () {
         game.load.image('bg_level5a', 'assets/levels/level5a.png');
+        game.load.image('bg_level5b', 'assets/levels/level5b.png');
 
         game.load.image('nikus', 'assets/characters/kamienikus.png');
         game.load.image('av_nikus', 'assets/avatars/av_nikus.png');
@@ -40,11 +41,15 @@ var level5 = {
             cursors = game.input.keyboard.createCursorKeys();
         game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 
-        bg = game.add.sprite(0, 0, 'bg_level5a');
+        if (!globalParrotDelivered)
+            bg = game.add.sprite(0, 0, 'bg_level5a');
+        else
+            bg = game.add.sprite(0, 0, 'bg_level5b');
 
         door1 = createTrigger(0, 475, 640, 5);
         door2 = createTrigger(280, 130, 80, 5);
 
+        door3 = createTrigger(0, 160, 5, 135);
         door3_closed_trigger = createTrigger(0, 160, 40, 135);
         door4_closed_trigger = createTrigger(600, 160, 40, 135);
 
@@ -57,7 +62,7 @@ var level5 = {
         col_sprites = [];
 
         col_sprites.push(makeRectangle(0, 0, 280, 160, col));
-        col_sprites.push(makeRectangle(0, 160, 20, 135, col));
+        if (!globalParrotDelivered) col_sprites.push(makeRectangle(0, 160, 20, 135, col));
         col_sprites.push(makeRectangle(0, 160, 170, 36, col));
         col_sprites.push(makeRectangle(0, 292, 112, 200, col));
         col_sprites.push(makeRectangle(112, 413, 120, 80, col));
@@ -104,6 +109,7 @@ var level5 = {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(302, 150, 'level4'));
             game.physics.arcade.collide(drako, door2, doorGenerator(302, 400, 'level6'));
+            game.physics.arcade.collide(drako, door3, doorGenerator(580, 200, 'level7'));
 
             if (spaceDown() && game.physics.arcade.overlap(drako, nikus_trigger))
                 level5.nikusDialogInit();

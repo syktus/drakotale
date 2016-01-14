@@ -9,7 +9,9 @@ var level1 = {
         game.load.image('bg_level3', 'assets/levels/level3.png');
         game.load.image('bg_level4', 'assets/levels/level4.png');
         game.load.image('bg_level5a', 'assets/levels/level5a.png');
+        game.load.image('bg_level5b', 'assets/levels/level5b.png');
         game.load.image('bg_level6', 'assets/levels/level6.png');
+        game.load.image('bg_level7', 'assets/levels/level7.png');
 
         /* LEVEL 2 */
 
@@ -48,6 +50,14 @@ var level1 = {
         game.load.image('domek', 'assets/level_doodads/domek.png');
         game.load.image('cage', 'assets/level_doodads/cage.png');
 
+        /* LEVEL 7 */
+
+        game.load.image('ryok_happy', 'assets/characters/ryok_happy.png');
+        game.load.image('ryok_sad', 'assets/characters/ryok_sad.png');
+
+        game.load.image('av_ryok_sad', 'assets/avatars/av_ryok_sad.png');
+        game.load.image('av_ryok_happy', 'assets/avatars/av_ryok_happy.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
@@ -55,6 +65,7 @@ var level1 = {
         game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
         game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
         game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
+        game.load.audio('ryok', 'assets/sounds/talk_ryok.ogg');
 
         /* COMMON */
 

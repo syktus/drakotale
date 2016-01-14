@@ -1,4 +1,4 @@
-var bg, drako, col, cursors, col_sprites, door1, door2, doorActivated, loadBlock = false;
+var bg, drako, col, cursors, col_sprites, door1, door2, door3, door4, doorActivated, loadBlock = false;
 
 var border, text, avatar, choice1, choice2, heart;
 
@@ -9,7 +9,9 @@ var globalMlodyDialog1Completed = true;//false;
 var globalComputerDialogCompleted = true;//false;
 var globalMiszaDialog1Triggered = true;//false;
 var globalParrotTaken = true;//false;
-var globalParrotDelivered = false;
+var globalParrotDelivered = true;//false;
+var globalRyokFirstChatPassed = true;//false;
+var globalSucharToldToRyok = true;//false;
 var globalLegoDoorDestroyed = false;
 
 /**********************/
@@ -27,7 +29,8 @@ game.state.add('level3', level3);
 game.state.add('level4', level4);
 game.state.add('level5', level5);
 game.state.add('level6', level6);
+game.state.add('level7', level7);
 
-game.state.start('level6');
+game.state.start('level7');
 
-takenItem = ITEM_PARROT;
+//takenItem = ITEM_PARROT;
