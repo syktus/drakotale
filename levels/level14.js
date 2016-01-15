@@ -15,17 +15,19 @@ var level14_text_content10 = '* W I Ę C   T Y   T E Ż\n* N I E   B Ę D Z I E 
 
 var level14 = {
     preload: function () {
-        game.load.image('bg_level14', 'assets/levels/level14.png');
+        if (debugMode) {
+            game.load.image('bg_level14', 'assets/levels/level14.png');
 
-        game.load.image('drako2', 'assets/characters/drakosad_sprite.png');
+            game.load.image('drako2', 'assets/characters/drakosad_sprite.png');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

@@ -11,21 +11,23 @@ var level12_text_content7 = '* To jest naprawdę\n   straszny sekret.';
 
 var level12 = {
     preload: function () {
-        game.load.image('bg_level12a', 'assets/levels/level12a.png');
-        game.load.image('bg_level12b', 'assets/levels/level12b.png');
+        if (debugMode) {
+            game.load.image('bg_level12a', 'assets/levels/level12a.png');
+            game.load.image('bg_level12b', 'assets/levels/level12b.png');
 
-        game.load.image('av_tk_sad', 'assets/avatars/av_tk_sad.png');
-        game.load.image('av_tk_happy', 'assets/avatars/av_tk_happy.png');
+            game.load.image('av_tk_sad', 'assets/avatars/av_tk_sad.png');
+            game.load.image('av_tk_happy', 'assets/avatars/av_tk_happy.png');
 
-        game.load.audio('tk', 'assets/sounds/talk_tk.ogg');
+            game.load.audio('tk', 'assets/sounds/talk_tk.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

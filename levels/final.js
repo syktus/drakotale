@@ -3,11 +3,13 @@ var slide, slide2, tween;
 
 var final = {
     preload: function () {
-        for (var i = 1; i <= 66; i++) {
-            game.load.image('final' + i, 'assets/final/final' + i + '.png');
-        }
+        if (debugMode) {
+            for (var i = 1; i <= 66; i++) {
+                game.load.image('final' + i, 'assets/final/final' + i + '.png');
+            }
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {
@@ -18,8 +20,8 @@ var final = {
     },
 
     update: function () {
-        if(spaceDown() && finalSlide <= 66) {
-            lockSpace(1);
+        if(spaceDown() && finalSlide <= 65) {
+            lockSpace(0.5);
             tween = game.add.tween(slide2).to({alpha: 1}, 2000, "Linear", true);
             tween.onComplete.add(function() {
                 tween.onComplete.removeAll();

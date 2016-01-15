@@ -21,25 +21,27 @@ var level10_text_content16 = '* Będę grać w grę.\n* I czytać komiksy\n   dl
 
 var level10 = {
     preload: function () {
-        game.load.image('bg_level10', 'assets/levels/level10.png');
+        if (debugMode) {
+            game.load.image('bg_level10', 'assets/levels/level10.png');
 
-        game.load.spritesheet('kuma', 'assets/characters/kuma_sprite.png', 50, 104);
+            game.load.spritesheet('kuma', 'assets/characters/kuma_sprite.png', 50, 104);
 
-        game.load.image('av_kuma_sad', 'assets/avatars/av_kuma_sad.png');
-        game.load.image('av_kuma_happy', 'assets/avatars/av_kuma_happy.png');
+            game.load.image('av_kuma_sad', 'assets/avatars/av_kuma_sad.png');
+            game.load.image('av_kuma_happy', 'assets/avatars/av_kuma_happy.png');
 
-        game.load.image('cloth_dirty_carry', 'assets/items/item4a_carry.png');
-        game.load.image('cloth_carry', 'assets/items/item4b_carry.png');
+            game.load.image('cloth_dirty_carry', 'assets/items/item4a_carry.png');
+            game.load.image('cloth_carry', 'assets/items/item4b_carry.png');
 
-        game.load.audio('kuma', 'assets/sounds/talk_kuma.ogg');
+            game.load.audio('kuma', 'assets/sounds/talk_kuma.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

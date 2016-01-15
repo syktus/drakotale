@@ -4,24 +4,24 @@ var border, text, avatar, choice1, choice2, heart;
 
 /* GLOBAL STATE FLAGS */
 
-var globalPenguinCutsceneTriggered = true;//false;
-var globalMlodyDialog1Completed = true;//false;
-var globalComputerDialogCompleted = true;//false;
-var globalMiszaDialog1Triggered = true;//false;
-var globalParrotTaken = true;//false;
-var globalParrotDelivered = true;//false;
-var globalRyokFirstChatPassed = true;//false;
-var globalSucharToldToRyok = true;//false;
-var globalNokiaTaken = true;//false;
-var globalLegoDoorDestroyed = true;//false;
-var globalMiyaChatComplete = true;//false;
-var globalKumaAskedForKapcie = true;//false;
-var globalKapcieTaken = true;//false;
-var globalKumaGotKapcie = true;//false;
-var globalClothTaken = true;//false;
-var globalClothWashed = true;//false;
-var globalKumaHelped = true;//false;
-var globalWilkDialogComplete = true;//false;
+var globalPenguinCutsceneTriggered = false;
+var globalMlodyDialog1Completed = false;
+var globalComputerDialogCompleted = false;
+var globalMiszaDialog1Triggered = false;
+var globalParrotTaken = false;
+var globalParrotDelivered = false;
+var globalRyokFirstChatPassed = false;
+var globalSucharToldToRyok = false;
+var globalNokiaTaken = false;
+var globalLegoDoorDestroyed = false;
+var globalMiyaChatComplete = false;
+var globalKumaAskedForKapcie = false;
+var globalKapcieTaken = false;
+var globalKumaGotKapcie = false;
+var globalClothTaken = false;
+var globalClothWashed = false;
+var globalKumaHelped = false;
+var globalWilkDialogComplete = false;
 
 var globalCake1Taken = false;
 var globalCake2Taken = false;
@@ -30,14 +30,14 @@ var globalCake1Delivered = false;
 var globalCake2Delivered = false;
 var globalCake3Delivered = false;
 
-var globalTKDialogComplete = true;//false;
-var globalTKHappy = true;//false;
+var globalTKDialogComplete = false;
+var globalTKHappy = false;
 
 var globalCakeDelivered = 0;
 
-var globalAilishTalkTriggered = true;//false;
-var globalPaintingTouched = true;//false;
-var globalAilishHappy = true;//false;
+var globalAilishTalkTriggered = false;
+var globalPaintingTouched = false;
+var globalAilishHappy = false;
 
 /**********************/
 
@@ -48,6 +48,7 @@ var transitionPlugin;
 
 var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameDiv');
 
+game.state.add('intro', intro);
 game.state.add('level1', level1);
 game.state.add('level2', level2);
 game.state.add('level3', level3);
@@ -64,6 +65,7 @@ game.state.add('level13', level13);
 game.state.add('level14', level14);
 game.state.add('final', final);
 
-game.state.start('level14');
+game.state.start('intro');
 
+var debugMode = false;
 //takenItem = ITEM_PARROT;

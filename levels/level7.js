@@ -25,23 +25,25 @@ var level7_text_content13 = 'Drzwi są zamknięte.';
 
 var level7 = {
     preload: function () {
-        game.load.image('bg_level7', 'assets/levels/level7.png');
+        if (debugMode) {
+            game.load.image('bg_level7', 'assets/levels/level7.png');
 
-        game.load.image('ryok_happy', 'assets/characters/ryok_happy.png');
-        game.load.image('ryok_sad', 'assets/characters/ryok_sad.png');
+            game.load.image('ryok_happy', 'assets/characters/ryok_happy.png');
+            game.load.image('ryok_sad', 'assets/characters/ryok_sad.png');
 
-        game.load.image('av_ryok_sad', 'assets/avatars/av_ryok_sad.png');
-        game.load.image('av_ryok_happy', 'assets/avatars/av_ryok_happy.png');
+            game.load.image('av_ryok_sad', 'assets/avatars/av_ryok_sad.png');
+            game.load.image('av_ryok_happy', 'assets/avatars/av_ryok_happy.png');
 
-        game.load.audio('ryok', 'assets/sounds/talk_ryok.ogg');
+            game.load.audio('ryok', 'assets/sounds/talk_ryok.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

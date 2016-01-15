@@ -32,27 +32,29 @@ var level6_text_content19 = '* Gdzie jesteś, mój rycerzu?...';
 
 var level6 = {
     preload: function () {
-        game.load.image('bg_level6', 'assets/levels/level6.png');
+        if (debugMode) {
+            game.load.image('bg_level6', 'assets/levels/level6.png');
 
-        game.load.spritesheet('misza', 'assets/characters/misza_sprite.png', 51, 96);
-        game.load.spritesheet('misza_gora', 'assets/characters/misza_sprite_gora.png', 51, 56);
+            game.load.spritesheet('misza', 'assets/characters/misza_sprite.png', 51, 96);
+            game.load.spritesheet('misza_gora', 'assets/characters/misza_sprite_gora.png', 51, 56);
 
-        game.load.image('av_misza_sad', 'assets/avatars/av_misza_sad.png');
-        game.load.image('av_misza_happy', 'assets/avatars/av_misza_happy.png');
+            game.load.image('av_misza_sad', 'assets/avatars/av_misza_sad.png');
+            game.load.image('av_misza_happy', 'assets/avatars/av_misza_happy.png');
 
-        game.load.image('domek', 'assets/level_doodads/domek.png');
-        game.load.image('cage', 'assets/level_doodads/cage.png');
+            game.load.image('domek', 'assets/level_doodads/domek.png');
+            game.load.image('cage', 'assets/level_doodads/cage.png');
 
-        game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
+            game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
-        game.load.bitmapFont('times_new_misza', 'assets/fonts/times_new_misza_0.png', 'assets/fonts/times_new_misza.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('times_new_misza', 'assets/fonts/times_new_misza_0.png', 'assets/fonts/times_new_misza.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

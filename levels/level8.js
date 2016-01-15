@@ -12,19 +12,21 @@ var level8_text_content8 = '* wrrrruuum pioru pioru *';
 
 var level8 = {
     preload: function () {
-        game.load.image('bg_level8a', 'assets/levels/level8a.png');
-        game.load.image('bg_level8b', 'assets/levels/level8b.png');
+        if (debugMode) {
+            game.load.image('bg_level8a', 'assets/levels/level8a.png');
+            game.load.image('bg_level8b', 'assets/levels/level8b.png');
 
-        game.load.image('nokia', 'assets/items/item2.png');
-        game.load.image('nokia_carry', 'assets/items/item2_carry.png');
+            game.load.image('nokia', 'assets/items/item2.png');
+            game.load.image('nokia_carry', 'assets/items/item2_carry.png');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

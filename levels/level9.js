@@ -30,27 +30,29 @@ var level9_text_content18 = 'Króliczki przybywajcie!';
 
 var level9 = {
     preload: function () {
-        game.load.image('bg_level9', 'assets/levels/level9.png');
+        if (debugMode) {
+            game.load.image('bg_level9', 'assets/levels/level9.png');
 
-        game.load.image('kapcie', 'assets/items/item3.png');
-        game.load.image('kapcie_carry', 'assets/items/item3_carry.png');
+            game.load.image('kapcie', 'assets/items/item3.png');
+            game.load.image('kapcie_carry', 'assets/items/item3_carry.png');
 
-        game.load.image('av_miya_sad', 'assets/avatars/av_miya_sad.png');
-        game.load.image('av_miya_happy', 'assets/avatars/av_miya_happy.png');
+            game.load.image('av_miya_sad', 'assets/avatars/av_miya_sad.png');
+            game.load.image('av_miya_happy', 'assets/avatars/av_miya_happy.png');
 
-        game.load.spritesheet('miya', 'assets/characters/miya_sprite.png', 37, 70);
+            game.load.spritesheet('miya', 'assets/characters/miya_sprite.png', 37, 70);
 
-        game.load.spritesheet('bunny', 'assets/level_doodads/bunny.png', 50, 53);
+            game.load.spritesheet('bunny', 'assets/level_doodads/bunny.png', 50, 53);
 
-        game.load.audio('miya', 'assets/sounds/talk_miya.ogg');
+            game.load.audio('miya', 'assets/sounds/talk_miya.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

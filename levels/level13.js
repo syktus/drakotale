@@ -18,23 +18,25 @@ var level13_text_content13 = '* Na co czekasz?\n* Biegnij do obrazu!';
 
 var level13 = {
     preload: function () {
-        game.load.image('bg_level13', 'assets/levels/level13.png');
+        if (debugMode) {
+            game.load.image('bg_level13', 'assets/levels/level13.png');
 
-        game.load.image('ailish_sad', 'assets/characters/ail_sad.png');
-        game.load.image('ailish_happy', 'assets/characters/ail_happy.png');
+            game.load.image('ailish_sad', 'assets/characters/ail_sad.png');
+            game.load.image('ailish_happy', 'assets/characters/ail_happy.png');
 
-        game.load.image('av_ailish_sad', 'assets/avatars/av_ail_sad.png');
-        game.load.image('av_ailish_happy', 'assets/avatars/av_ail_happy.png');
+            game.load.image('av_ailish_sad', 'assets/avatars/av_ail_sad.png');
+            game.load.image('av_ailish_happy', 'assets/avatars/av_ail_happy.png');
 
-        game.load.audio('ailish', 'assets/sounds/talk_ail.ogg');
+            game.load.audio('ailish', 'assets/sounds/talk_ail.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

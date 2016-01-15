@@ -6,18 +6,20 @@ var level3_text_content1 = '* Papuga Katarzynka.\n   Wygląda na samotną.';
 
 var level3 = {
     preload: function () {
-        game.load.image('bg_level3', 'assets/levels/level3.png');
+        if (debugMode) {
+            game.load.image('bg_level3', 'assets/levels/level3.png');
 
-        game.load.image('parrot', 'assets/items/item1.png');
-        game.load.image('parrot_carry', 'assets/items/item1_carry.png');
+            game.load.image('parrot', 'assets/items/item1.png');
+            game.load.image('parrot_carry', 'assets/items/item1_carry.png');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

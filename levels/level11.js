@@ -39,32 +39,34 @@ var level11_text_content21 = '* Tarta z Brokułów. Nie pytaj.';
 
 var level11 = {
     preload: function () {
-        game.load.image('bg_level11', 'assets/levels/level11.png');
+        if (debugMode) {
+            game.load.image('bg_level11', 'assets/levels/level11.png');
 
-        game.load.image('cake1', 'assets/items/item5.png');
-        game.load.image('cake1_carry', 'assets/items/item5_carry.png');
-        game.load.image('cake2', 'assets/items/item6.png');
-        game.load.image('cake2_carry', 'assets/items/item6_carry.png');
-        game.load.image('cake3', 'assets/items/item7.png');
-        game.load.image('cake3_carry', 'assets/items/item7_carry.png');
+            game.load.image('cake1', 'assets/items/item5.png');
+            game.load.image('cake1_carry', 'assets/items/item5_carry.png');
+            game.load.image('cake2', 'assets/items/item6.png');
+            game.load.image('cake2_carry', 'assets/items/item6_carry.png');
+            game.load.image('cake3', 'assets/items/item7.png');
+            game.load.image('cake3_carry', 'assets/items/item7_carry.png');
 
-        game.load.image('av_wilk_sad', 'assets/avatars/av_wilk_sad.png');
-        game.load.image('av_wilk_happy', 'assets/avatars/av_wilk_happy.png');
+            game.load.image('av_wilk_sad', 'assets/avatars/av_wilk_sad.png');
+            game.load.image('av_wilk_happy', 'assets/avatars/av_wilk_happy.png');
 
-        game.load.spritesheet('wilk', 'assets/characters/wilk_sprite.png', 83, 110);
+            game.load.spritesheet('wilk', 'assets/characters/wilk_sprite.png', 83, 110);
 
-        game.load.image('death1', 'assets/level_doodads/death1.png');
-        game.load.image('death2', 'assets/level_doodads/death2.png');
+            game.load.image('death1', 'assets/level_doodads/death1.png');
+            game.load.image('death2', 'assets/level_doodads/death2.png');
 
-        game.load.audio('wilk', 'assets/sounds/talk_wilk.ogg');
+            game.load.audio('wilk', 'assets/sounds/talk_wilk.ogg');
 
-        game.load.image('heart', 'assets/misc/heart.png');
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('heart', 'assets/misc/heart.png');
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {

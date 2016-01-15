@@ -16,21 +16,23 @@ var level5_text_content8 = '* Drzwi pękły pod naporem\n   przytłaczającej si
 
 var level5 = {
     preload: function () {
-        game.load.image('bg_level5a', 'assets/levels/level5a.png');
-        game.load.image('bg_level5b', 'assets/levels/level5b.png');
-        game.load.image('bg_level5c', 'assets/levels/level5c.png');
+        if (debugMode) {
+            game.load.image('bg_level5a', 'assets/levels/level5a.png');
+            game.load.image('bg_level5b', 'assets/levels/level5b.png');
+            game.load.image('bg_level5c', 'assets/levels/level5c.png');
 
-        game.load.image('nikus', 'assets/characters/kamienikus.png');
-        game.load.image('av_nikus', 'assets/avatars/av_nikus.png');
+            game.load.image('nikus', 'assets/characters/kamienikus.png');
+            game.load.image('av_nikus', 'assets/avatars/av_nikus.png');
 
-        game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
+            game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
 
-        game.load.image('ramka', 'assets/misc/ramka.png');
-        game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
+            game.load.image('ramka', 'assets/misc/ramka.png');
+            game.load.spritesheet('drako', 'assets/characters/drako.png', 36, 60);
 
-        game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
+            game.load.bitmapFont('determination_font', 'assets/fonts/determination_sans_0.png', 'assets/fonts/determination_sans.xml');
 
-        loadTransitionPlugin();
+            loadTransitionPlugin();
+        }
     },
 
     create: function () {
