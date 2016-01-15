@@ -119,7 +119,7 @@ var level13 = {
             if (!globalAilishHappy)
                 game.physics.arcade.collide(drako, door2);
             else
-                game.physics.arcade.collide(drako, door2, doorGenerator(302, 400, 'level14'));
+                game.physics.arcade.collide(drako, door2, doorGenerator(24, 240, 'level14'));
 
             if (!globalAilishTalkTriggered)
                 game.physics.arcade.collide(drako, ailish_trigger2, level13.ailishDialogInit);
