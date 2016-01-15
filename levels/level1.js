@@ -20,6 +20,7 @@ var level1 = {
         game.load.image('bg_level11', 'assets/levels/level11.png');
         game.load.image('bg_level12a', 'assets/levels/level12a.png');
         game.load.image('bg_level12b', 'assets/levels/level12b.png');
+        game.load.image('bg_level13', 'assets/levels/level13.png');
 
         /* LEVEL 2 */
 
@@ -114,6 +115,14 @@ var level1 = {
         game.load.image('av_tk_sad', 'assets/avatars/av_tk_sad.png');
         game.load.image('av_tk_happy', 'assets/avatars/av_tk_happy.png');
 
+        /* LEVEL 13 */
+
+        game.load.image('ailish_sad', 'assets/characters/ail_sad.png');
+        game.load.image('ailish_happy', 'assets/characters/ail_happy.png');
+
+        game.load.image('av_ailish_sad', 'assets/avatars/av_ail_sad.png');
+        game.load.image('av_ailish_happy', 'assets/avatars/av_ail_happy.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
@@ -126,6 +135,7 @@ var level1 = {
         game.load.audio('kuma', 'assets/sounds/talk_kuma.ogg');
         game.load.audio('wilk', 'assets/sounds/talk_wilk.ogg');
         game.load.audio('tk', 'assets/sounds/talk_tk.ogg');
+        game.load.audio('ailish', 'assets/sounds/talk_ail.ogg');
 
         /* COMMON */
 
@@ -221,6 +231,8 @@ var level1 = {
         text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
         displayText(text, function() { dialogState = 1 });
         lockSpace(0.3);
+        if(globalAilishTalkTriggered)
+            globalPaintingTouched = true;
     },
 
     paintingCutscene: function() {

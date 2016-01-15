@@ -35,6 +35,10 @@ var globalTKHappy = true;//false;
 
 var globalCakeDelivered = 0;
 
+var globalAilishTalkTriggered = false;
+var globalPaintingTouched = false;
+var globalAilishHappy = false;
+
 /**********************/
 
 var dialogState = 0;
@@ -56,7 +60,8 @@ game.state.add('level9', level9);
 game.state.add('level10', level10);
 game.state.add('level11', level11);
 game.state.add('level12', level12);
+game.state.add('level13', level13);
 
-game.state.start('level12');
+game.state.start('level13');
 
 //takenItem = ITEM_PARROT;
