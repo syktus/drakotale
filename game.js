@@ -62,6 +62,7 @@ game.state.add('level11', level11);
 game.state.add('level12', level12);
 game.state.add('level13', level13);
 game.state.add('level14', level14);
+game.state.add('final', final);
 
 game.state.start('level14');
 
