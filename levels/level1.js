@@ -17,6 +17,7 @@ var level1 = {
         game.load.image('bg_level8b', 'assets/levels/level8b.png');
         game.load.image('bg_level9', 'assets/levels/level9.png');
         game.load.image('bg_level10', 'assets/levels/level10.png');
+        game.load.image('bg_level11', 'assets/levels/level11.png');
 
         /* LEVEL 2 */
 
@@ -28,7 +29,7 @@ var level1 = {
 
         /* LEVEL 3 */
 
-        game.load.image('parrot', 'assets/item1.png');
+        game.load.image('parrot', 'assets/items/item1.png');
         game.load.image('parrot_carry', 'assets/items/item1_carry.png');
 
         /* LEVEL 4 */
@@ -89,6 +90,23 @@ var level1 = {
         game.load.image('cloth_dirty_carry', 'assets/items/item4a_carry.png');
         game.load.image('cloth_carry', 'assets/items/item4b_carry.png');
 
+        /* LEVEL 11 */
+
+        game.load.image('cake1', 'assets/items/item5.png');
+        game.load.image('cake1_carry', 'assets/items/item5_carry.png');
+        game.load.image('cake2', 'assets/items/item6.png');
+        game.load.image('cake2_carry', 'assets/items/item6_carry.png');
+        game.load.image('cake3', 'assets/items/item7.png');
+        game.load.image('cake3_carry', 'assets/items/item7_carry.png');
+
+        game.load.image('av_wilk_sad', 'assets/avatars/av_wilk_sad.png');
+        game.load.image('av_wilk_happy', 'assets/avatars/av_wilk_happy.png');
+
+        game.load.spritesheet('wilk', 'assets/characters/wilk_sprite.png', 83, 110);
+
+        game.load.image('death1', 'assets/level_doodads/death1.png');
+        game.load.image('death2', 'assets/level_doodads/death2.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
@@ -99,6 +117,7 @@ var level1 = {
         game.load.audio('ryok', 'assets/sounds/talk_ryok.ogg');
         game.load.audio('miya', 'assets/sounds/talk_miya.ogg');
         game.load.audio('kuma', 'assets/sounds/talk_kuma.ogg');
+        game.load.audio('wilk', 'assets/sounds/talk_wilk.ogg');
 
         /* COMMON */
 

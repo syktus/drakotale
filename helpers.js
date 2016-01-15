@@ -311,6 +311,57 @@ function choiceWaiter(firstChoiceState, secondChoiceState) {
     }
 }
 
+function choiceWaiter4(firstChoiceState, secondChoiceState, thirdChoiceState, fourthChoiceState) {
+    if (spaceDown()) {
+        if (choiceState == 0)
+            dialogState = firstChoiceState;
+        else if (choiceState == 1)
+            dialogState = secondChoiceState;
+        else if (choiceState == 2)
+            dialogState = thirdChoiceState;
+        else
+            dialogState = fourthChoiceState;
+
+        heart.visible = false;
+        choice1.setText('');
+        choice2.setText('');
+        lockSpace(0.3);
+    }
+    else if (choiceState == 0 && cursors.right.isDown) {
+        choiceState = 1;
+        heart.x += 196;
+    }
+    else if (choiceState == 0 && cursors.down.isDown) {
+        choiceState = 2;
+        heart.y += 58;
+    }
+    else if (choiceState == 1 && cursors.left.isDown) {
+        choiceState = 0;
+        heart.x -= 196;
+    }
+    else if (choiceState == 1 && cursors.down.isDown) {
+        choiceState = 3;
+        heart.y += 58;
+    }
+    else if (choiceState == 2 && cursors.right.isDown) {
+        choiceState = 3;
+        heart.x += 196;
+    }
+    else if (choiceState == 2 && cursors.up.isDown) {
+        choiceState = 0;
+        heart.y -= 58;
+    }
+    else if (choiceState == 3 && cursors.left.isDown) {
+        choiceState = 2;
+        heart.x -= 196;
+    }
+    else if (choiceState == 3 && cursors.up.isDown) {
+        choiceState = 1;
+        heart.y -= 58;
+    }
+}
+
+
 function doorGenerator(x, y, level) {
     return function() {
         if(!doorActivated) {

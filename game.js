@@ -21,6 +21,14 @@ var globalKumaGotKapcie = true;//false;
 var globalClothTaken = true;//false;
 var globalClothWashed = true;//false;
 var globalKumaHelped = true;//false;
+var globalWilkDialogComplete = true;//false;
+
+var globalCake1Taken = false;
+var globalCake2Taken = false;
+var globalCake3Taken = false;
+var globalCake1Delivered = false;
+var globalCake2Delivered = false;
+var globalCake3Delivered = false;
 
 /**********************/
 
@@ -41,7 +49,8 @@ game.state.add('level7', level7);
 game.state.add('level8', level8);
 game.state.add('level9', level9);
 game.state.add('level10', level10);
+game.state.add('level11', level11);
 
-game.state.start('level9');
+game.state.start('level11');
 
 //takenItem = ITEM_PARROT;

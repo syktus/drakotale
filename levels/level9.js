@@ -92,12 +92,6 @@ var level9 = {
 
         col.visible = false;
 
-        if (!globalParrotTaken) {
-            parrot = game.add.sprite(390, 143, 'parrot');
-
-            parrot_trigger = createTrigger(390, 140, 60, 80);
-        }
-
         miya = game.add.sprite(300, 220, 'miya');
 
         miya_trigger = createTrigger(280, 240, 77, 70);
@@ -452,7 +446,7 @@ var level9 = {
 
     miyaDialog2Cutscene: function() {
         if (dialogState == 44)
-            renderText(text, level9_text_content18);
+            renderText(text, level9_text_content18, miya_talk);
         else if (dialogState == 45) {
             level9.generateBunny();
             bunniesMoving = true;
