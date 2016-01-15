@@ -30,6 +30,11 @@ var globalCake1Delivered = false;
 var globalCake2Delivered = false;
 var globalCake3Delivered = false;
 
+var globalTKDialogComplete = true;//false;
+var globalTKHappy = true;//false;
+
+var globalCakeDelivered = 0;
+
 /**********************/
 
 var dialogState = 0;
@@ -50,7 +55,8 @@ game.state.add('level8', level8);
 game.state.add('level9', level9);
 game.state.add('level10', level10);
 game.state.add('level11', level11);
+game.state.add('level12', level12);
 
-game.state.start('level11');
+game.state.start('level12');
 
 //takenItem = ITEM_PARROT;

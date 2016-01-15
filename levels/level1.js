@@ -18,6 +18,8 @@ var level1 = {
         game.load.image('bg_level9', 'assets/levels/level9.png');
         game.load.image('bg_level10', 'assets/levels/level10.png');
         game.load.image('bg_level11', 'assets/levels/level11.png');
+        game.load.image('bg_level12a', 'assets/levels/level12a.png');
+        game.load.image('bg_level12b', 'assets/levels/level12b.png');
 
         /* LEVEL 2 */
 
@@ -107,6 +109,11 @@ var level1 = {
         game.load.image('death1', 'assets/level_doodads/death1.png');
         game.load.image('death2', 'assets/level_doodads/death2.png');
 
+        /* LEVEL 12 */
+
+        game.load.image('av_tk_sad', 'assets/avatars/av_tk_sad.png');
+        game.load.image('av_tk_happy', 'assets/avatars/av_tk_happy.png');
+
         /* SOUNDS */
 
         game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
@@ -118,6 +125,7 @@ var level1 = {
         game.load.audio('miya', 'assets/sounds/talk_miya.ogg');
         game.load.audio('kuma', 'assets/sounds/talk_kuma.ogg');
         game.load.audio('wilk', 'assets/sounds/talk_wilk.ogg');
+        game.load.audio('tk', 'assets/sounds/talk_tk.ogg');
 
         /* COMMON */
 
