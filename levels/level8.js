@@ -6,7 +6,7 @@ var level8_text_content2 = '* Który pamięta dni noszenia go...\n   ale prania 
 var level8_text_content3 = '* A OBOK STOI PRALKA.\n   Ironio, ty wredna kobieto...';
 var level8_text_content4 = 'Pralka.\nPierze ubrania, myśli i pieniądze.';
 var level8_text_content5 = 'W ścianie są jakieś podejrzane\nwyżłobienia...';
-var level8_text_content6 = 'Tutaj ewidentnie są sekretne drzwi.\nAle czegoś jeszcze brakuje,\nżeby je otworzyć';
+var level8_text_content6 = 'Tutaj ewidentnie są sekretne drzwi.\nAle czegoś jeszcze brakuje,\nżeby je otworzyć.';
 var level8_text_content7 = 'Legendy twierdzą, że jest to\nnajtwardszy przedmiot na świecie...' ;
 var level8_text_content8 = '* wrrrruuum pioru pioru *';
 
@@ -36,7 +36,10 @@ var level8 = {
             cursors = game.input.keyboard.createCursorKeys();
         game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 
-        bg = game.add.sprite(0, 0, 'bg_level8a');
+        if (!globalClothTaken)
+            bg = game.add.sprite(0, 0, 'bg_level8a');
+        else
+            bg = game.add.sprite(0, 0, 'bg_level8b');
 
         door1 = createTrigger(635, 160, 5, 135);
 
@@ -105,6 +108,10 @@ var level8 = {
             stopDrako();
             level8.washmachineInteractActive();
         }
+        else if (dialogState >= 21 && dialogState <= 22) {
+            stopDrako();
+            level8.hiddenDoorDialog2Cutscene();
+        }
         else {
             game.physics.arcade.collide(drako, col);
             game.physics.arcade.collide(drako, door1, doorGenerator(24, 200, 'level7'));
@@ -126,8 +133,10 @@ var level8 = {
             if (spaceDown() && game.physics.arcade.overlap(drako, shoe_trigger))
                 level8.shoeDialogInit();
 
-            if (spaceDown() && game.physics.arcade.overlap(drako, hidden_door_trigger))
+            if (!globalClothTaken && spaceDown() && game.physics.arcade.overlap(drako, hidden_door_trigger))
                 level8.hiddenDoorDialogInit();
+            else if (spaceDown() && game.physics.arcade.overlap(drako, hidden_door_trigger))
+                level8.hiddenDoorDialog2Init();
 
             moveDrako();
         }
@@ -272,6 +281,21 @@ var level8 = {
         if (dialogState == 14)
             renderText(text, level8_text_content5);
         else if (dialogState == 15)
+            textFinishWaiter();
+    },
+
+    hiddenDoorDialog2Init: function() {
+        dialogState = 21;
+        border = game.add.sprite(31, 318, 'ramka');
+        text = game.add.bitmapText(62, 348, 'determination_font', '', 29);
+        displayText(text, function() { dialogState = 22 });
+        lockSpace(0.3);
+    },
+
+    hiddenDoorDialog2Cutscene: function() {
+        if (dialogState == 21)
+            renderText(text, level8_text_content6);
+        else if (dialogState == 22)
             textFinishWaiter();
     }
 };
