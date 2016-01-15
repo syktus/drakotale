@@ -4,6 +4,8 @@ var border, text, avatar, choice1, choice2, heart;
 
 /* GLOBAL STATE FLAGS */
 
+var debugMode = false;
+
 var globalPenguinCutsceneTriggered = false;
 var globalMlodyDialog1Completed = false;
 var globalComputerDialogCompleted = false;
@@ -67,5 +69,6 @@ game.state.add('final', final);
 
 game.state.start('intro');
 
-var debugMode = false;
 //takenItem = ITEM_PARROT;
+
+var music_intro, music_overworld, music_level2, music_level14, music_outro, music_dogsong;

@@ -13,6 +13,9 @@ var final = {
     },
 
     create: function () {
+        if (music_level14.isPlaying) music_level14.stop();
+        if (!(music_outro.isPlaying)) music_outro.play();
+
         finalSlide = 1;
         slide = game.add.sprite(0, 0, 'final1');
         slide2 = game.add.sprite(0, 0, 'final2');

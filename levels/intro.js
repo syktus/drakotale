@@ -133,8 +133,8 @@ var intro = {
 
         /* SOUNDS */
 
-        game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
-        game.load.audio('nip_slow', 'assets/sounds/talk_pin2.ogg');
+        game.load.audio('pin', 'assets/sounds/talk_pin.ogg');
+        game.load.audio('pin_slow', 'assets/sounds/talk_pin2.ogg');
         game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
         game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
         game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
@@ -158,10 +158,28 @@ var intro = {
             game.load.image('final' + j, 'assets/final/final' + j + '.png');
         }
 
+        /* MUSIC */
+
+        game.load.audio('music_intro', 'assets/music/intro.ogg');
+        game.load.audio('music_overworld', 'assets/music/overworld.ogg');
+        game.load.audio('music_level2', 'assets/music/level2.ogg');
+        game.load.audio('music_level14', 'assets/music/level14.ogg');
+        game.load.audio('music_outro', 'assets/music/outro.ogg');
+        game.load.audio('music_dogsong', 'assets/music/dogsong.ogg');
+
         loadTransitionPlugin();
     },
 
     create: function () {
+        music_intro = game.add.audio('music_intro', 1, true);
+        music_overworld = game.add.audio('music_overworld', 0.3, true);
+        music_level2 = game.add.audio('music_level2', 0.2, true);
+        music_level14 = game.add.audio('music_level14', 0.3, true);
+        music_outro = game.add.audio('music_outro', 1, true);
+        music_dogsong = game.add.audio('music_dogsong', 0.3, true);
+
+        if (!(music_intro.isPlaying)) music_intro.play();
+
         introSlide = 1;
         slide = game.add.sprite(0, 0, 'intro1');
         slide2 = game.add.sprite(0, 0, 'intro2');

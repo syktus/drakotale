@@ -242,7 +242,7 @@ var level4 = {
         else if (dialogState == 13)
             renderChoice(choice1, choice2, level4_choice_content1[0], level4_choice_content1[1], 14);
         else if (dialogState == 14)
-            choiceWaiter(15, 17);
+            choiceWaiter(17, 15);
         else if (dialogState == 15) {
             displayText(text, function () { dialogState = 19; });
             dialogState = 16;

@@ -40,6 +40,9 @@ var level13 = {
     },
 
     create: function () {
+        if (!(music_overworld.isPlaying)) music_overworld.play();
+        if (music_level14.isPlaying) music_level14.stop();
+
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         doorActivated = false;

@@ -23,6 +23,9 @@ var level3 = {
     },
 
     create: function () {
+        if (!(music_overworld.isPlaying)) music_overworld.play();
+        if (music_level2.isPlaying) music_level2.stop();
+
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         doorActivated = false;

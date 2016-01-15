@@ -131,8 +131,8 @@ var level1 = {
 
             /* SOUNDS */
 
-            game.load.audio('nip', 'assets/sounds/talk_pin.ogg');
-            game.load.audio('nip_slow', 'assets/sounds/talk_pin2.ogg');
+            game.load.audio('pin', 'assets/sounds/talk_pin.ogg');
+            game.load.audio('pin_slow', 'assets/sounds/talk_pin2.ogg');
             game.load.audio('mlody', 'assets/sounds/talk_mlo.ogg');
             game.load.audio('nikus', 'assets/sounds/talk_nik.ogg');
             game.load.audio('misza', 'assets/sounds/talk_misza.ogg');
@@ -157,6 +157,10 @@ var level1 = {
     },
 
     create: function() {
+        if (music_intro.isPlaying) music_intro.stop();
+        if (music_level2.isPlaying) music_level2.stop();
+        if (!(music_overworld.isPlaying)) music_overworld.play();
+
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         doorActivated = false;
